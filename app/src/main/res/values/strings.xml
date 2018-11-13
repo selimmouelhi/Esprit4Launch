@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">esprit4launch</string>
+    <string name="facebook_app_id">1181530151986503</string>
+    <string name="facebook_login_protocol_schema">fb1181530151986503</string>
+
+
 </resources>
