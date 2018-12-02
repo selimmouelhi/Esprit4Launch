@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/login"
     tools:context=".activities.MainActivity">
 
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
-        android:layout_width="175dp"
-        android:layout_height="38dp"
+        android:layout_width="327dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="240dp"
 
@@ -60,12 +62,22 @@
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="43dp"
+        android:layout_width="322dp"
+        android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginTop="300dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/log_out"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="139dp"
+        android:layout_marginRight="139dp"
+        android:text="gonext" />
 
 
 </RelativeLayout>

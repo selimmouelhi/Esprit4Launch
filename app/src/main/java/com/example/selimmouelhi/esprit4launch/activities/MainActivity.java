@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button log_out;
     private CallbackManager callbackManager;
     private LoginButton loginButton;
+    private Button button2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         urlView = findViewById(R.id.url);
         log_out = findViewById(R.id.log_out);
         loginButton = findViewById(R.id.login_button);
+        button2 = findViewById(R.id.button2);
 
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -85,6 +87,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         signInButton.setOnClickListener(this);
         log_out.setOnClickListener(this);
         loginButton.setOnClickListener(this);
+        button2.setOnClickListener(this);
+
+
         printKeyHash();
 
 
@@ -247,6 +252,10 @@ private void signInFacebook(){
             break;
             case R.id.login_button:
                 signInFacebook();
+                break;
+            case R.id.button2:
+                Intent intent = new Intent(this,HomeActivity.class);
+                startActivity(intent);
                 break;
         }
 
