@@ -1,11 +1,13 @@
 package com.example.selimmouelhi.esprit4launch.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +16,7 @@ import com.example.selimmouelhi.esprit4launch.Interfaces.MostTastyRestaurants;
 import com.example.selimmouelhi.esprit4launch.Interfaces.topratedRestaurants;
 import com.example.selimmouelhi.esprit4launch.R;
 import com.example.selimmouelhi.esprit4launch.Utils.ImageLoader;
+import com.example.selimmouelhi.esprit4launch.activities.ViewMore;
 import com.example.selimmouelhi.esprit4launch.entities.Restaurant;
 import com.squareup.picasso.Picasso;
 
@@ -29,6 +32,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * A simple {@link Fragment} subclass.
  */
 public class tastyRes extends Fragment {
+
+    Button viewMore;
 
     ImageView imaget ;
     ImageView imaget1 ;
@@ -82,7 +87,7 @@ public class tastyRes extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_tasty_res, container, false);
 
-
+        viewMore = view.findViewById(R.id.view_more);
         imaget = view.findViewById(R.id.imaget1);
         imaget1 = view.findViewById(R.id.imaget2);
         imaget2 = view.findViewById(R.id.imaget3);
@@ -136,7 +141,6 @@ public class tastyRes extends Fragment {
 
                 System.out.println(response.body());
 
-                System.out.println(restaurants.get(0).getName()+"in fragment");
 
                 //item 1
                 Picasso.with(view.getContext()).load(ImageLoader.url_image+restaurants.get(0).getImageUrl()+ImageLoader.API_Key).into(imaget);
@@ -197,7 +201,16 @@ public class tastyRes extends Fragment {
 
             }
         });
+        viewMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent intent = new Intent(v.getContext(), ViewMore.class);
+                intent.putExtra("state","tasty");
+                startActivity(intent);
+
+            }
+        });
         return  view;
     }
     }

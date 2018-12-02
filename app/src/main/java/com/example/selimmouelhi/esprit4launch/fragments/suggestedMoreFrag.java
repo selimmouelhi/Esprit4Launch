@@ -1,6 +1,7 @@
 package com.example.selimmouelhi.esprit4launch.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -30,7 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class suggestedMoreFrag extends Fragment {
 
 
-    List<Restaurant> listr  = new ArrayList<>();
+    private ArrayList<Restaurant> listr ;
 
     ListView listView ;
 
@@ -46,31 +47,30 @@ public class suggestedMoreFrag extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_suggested_more, container, false);
         listView = view.findViewById(R.id.moreliste);
+        String state =getArguments().getString("state");
 
-        getList("service");
-        suggestedAdapter suggestedAdapter = new suggestedAdapter(getActivity(),(ArrayList<Restaurant>)listr);
-        return  view ;
-    }
-
-
-    private void getList(String option ){
-
-
+        System.out.println(state+ " in frag");
+            listr = new ArrayList<Restaurant>();
         Retrofit retrofit = new Retrofit.Builder().baseUrl(topratedRestaurants.Base_Url).addConverterFactory(GsonConverterFactory.create())
                 .build();
+        switch (state){
+            case "topratedres":
 
 
-
-
-        switch (option){
-            case "toprated":
                 topratedRestaurants topratedRestaurants = retrofit.create(com.example.selimmouelhi.esprit4launch.Interfaces.topratedRestaurants.class);
                 Call<List<Restaurant>> call = topratedRestaurants.getAllTopratedRes();
+
                 call.enqueue(new Callback<List<Restaurant>>() {
                     @Override
                     public void onResponse(Call<List<Restaurant>> call, Response<List<Restaurant>> response) {
-                        listr = response.body();
-                        System.out.println(listr.get(0).getAdresse());
+
+                        System.out.println("imhere too");
+                        System.out.println(response.body()+"in suggestedmore");
+                        listr = (ArrayList<Restaurant>)response.body();
+
+                        System.out.println(listr.get(0).getAdresse()+"in case 0");
+                        suggestedAdapter suggestedAdapter = new suggestedAdapter(getActivity(),listr);
+                        listView.setAdapter(suggestedAdapter);
 
                     }
 
@@ -79,7 +79,8 @@ public class suggestedMoreFrag extends Fragment {
                         System.out.println("error");
                     }
                 });
-                break;
+
+                System.out.println(listr+"in first function");
 
             case "tasty":
                 MostTastyRestaurants mostTastyRestaurants = retrofit.create(MostTastyRestaurants.class);
@@ -88,8 +89,10 @@ public class suggestedMoreFrag extends Fragment {
                 callT.enqueue(new Callback<List<Restaurant>>() {
                     @Override
                     public void onResponse(Call<List<Restaurant>> call, Response<List<Restaurant>> response) {
-                        listr = response.body();
+                        listr = (ArrayList<Restaurant>)response.body();
                         System.out.println(listr.get(0).getAdresse());
+                        suggestedAdapter suggestedAdapter = new suggestedAdapter(getActivity(),listr);
+                        listView.setAdapter(suggestedAdapter);
 
                     }
 
@@ -98,19 +101,16 @@ public class suggestedMoreFrag extends Fragment {
                         System.out.println("error");
                     }
                 });
-                break;
-
             case "service":
-
-
-
                 BestServicesRes bestServicesRes = retrofit.create(BestServicesRes.class);
                 Call<List<Restaurant>> callS = bestServicesRes.getAllBetterServices();
                 callS.enqueue(new Callback<List<Restaurant>>() {
                     @Override
                     public void onResponse(Call<List<Restaurant>> call, Response<List<Restaurant>> response) {
-                        listr = response.body();
+                        listr = (ArrayList<Restaurant>) response.body();
                         System.out.println(listr.get(0).getAdresse());
+                        suggestedAdapter suggestedAdapter = new suggestedAdapter(getActivity(),listr);
+                        listView.setAdapter(suggestedAdapter);
 
                     }
 
@@ -119,12 +119,16 @@ public class suggestedMoreFrag extends Fragment {
                         System.out.println("error");
                     }
                 });
-                break;
-
         }
+        System.out.println(listr+"in listfrag");
 
 
-
-
+        return  view ;
     }
+
+
+
+
+
+
 }

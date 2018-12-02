@@ -49,7 +49,7 @@ public class suggestedAdapter extends ArrayAdapter<Restaurant> {
 
             LayoutInflater lf = context.getLayoutInflater();
             viewHolder = new viewHolder();
-            convertView = lf.inflate(R.layout.viewmore_row, parent,true);
+            convertView = lf.inflate(R.layout.viewmore_row, null,true);
             viewHolder.adresseView = convertView.findViewById(R.id.adresserestaurant);
             viewHolder.nameView = convertView.findViewById(R.id.nomrestaurant);
             viewHolder.streetView  = convertView.findViewById(R.id.streetrest);
@@ -59,14 +59,19 @@ public class suggestedAdapter extends ArrayAdapter<Restaurant> {
 
 
 
-        }else
+        }else{
 
             viewHolder = (viewHolder) convertView.getTag();
+
+            System.out.println(listsuggestion.get(0).getName()+" in adapter");
         Picasso.with(convertView.getContext()).load(ImageLoader.url_image+listsuggestion.get(position).getImageUrl()+ImageLoader.API_Key).into(viewHolder.imageView);
 
         viewHolder.nameView.setText(listsuggestion.get(position).getName());
         viewHolder.adresseView.setText(listsuggestion.get(position).getAdresse()+"");
         viewHolder.streetView.setText(listsuggestion.get(position).getAdresse()+"");
+
+
+        }
 
 
 
