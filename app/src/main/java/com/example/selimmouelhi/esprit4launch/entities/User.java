@@ -1,12 +1,27 @@
 package com.example.selimmouelhi.esprit4launch.entities;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class User {
 
+    @SerializedName("id")
+    @Expose
     private int id ;
+    @SerializedName("nom")
+    @Expose
     private String nom ;
+    @SerializedName("prenom")
+    @Expose
     private String prenom ;
+    @SerializedName("datenaissance")
+    @Expose
     private int dateN;
+    @SerializedName("mail")
+    @Expose
     private  String mail ;
+    @SerializedName("phone")
+    @Expose
     private  int phone;
 
     public User(int id, String nom, String prenom, int dateN, String mail, int phone) {
