@@ -1,25 +1,69 @@
 package com.example.selimmouelhi.esprit4launch.activities;
 
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.selimmouelhi.esprit4launch.R;
 import com.example.selimmouelhi.esprit4launch.fragments.HomeFragm;
 import com.example.selimmouelhi.esprit4launch.fragments.HomescreenFragment;
+import com.example.selimmouelhi.esprit4launch.fragments.ProfileFragment;
 
 
 public class HomeActivity extends AppCompatActivity {
 
     Toolbar toolbar;
+    private BottomNavigationView bottomNavigationView;
+    Button browse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        bottomNavigationView = findViewById(R.id.appbottom);
+        browse = findViewById(R.id.browse);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.home:
+                        HomescreenFragment lf = new HomescreenFragment();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout,lf).commit();
+                        browse.setVisibility(View.VISIBLE);
+                        return  true;
+                    case R.id.profile:
+                        ProfileFragment pf = new ProfileFragment();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout,pf).commit();
+                        browse.setVisibility(View.INVISIBLE);
+                        return  true;
+                    case R.id.restaurant:
+                        System.out.println("here resaurant");
+                        return  true;
+                    case R.id.Cafe:
+                        System.out.println("here cafe");
+
+                        return  true;
+                    case R.id.friends:
+                        System.out.println("here friends");
+
+                        return  true;
+
+                    default:
+                        break;
+
+
+
+                }
+                return  false;
+            }
+        });
         HomescreenFragment lf = new HomescreenFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.framelayout,lf).commit();
         toolbar = findViewById(R.id.toolbar);
@@ -44,4 +88,6 @@ public class HomeActivity extends AppCompatActivity {
 
         return  super.onOptionsItemSelected(item);
     }
+
+
 }

@@ -147,6 +147,7 @@ public class topratedRes extends Fragment {
 
                 //item 1
                 Picasso.with(view.getContext()).load(ImageLoader.url_image+restaurants.get(0).getImageUrl()+ImageLoader.API_Key).into(imaget);
+
                 nom.setText(restaurants.get(0).getName());
                 adresse.setText(restaurants.get(0).getAdresse());
                 street.setText(restaurants.get(0).getAdresse());

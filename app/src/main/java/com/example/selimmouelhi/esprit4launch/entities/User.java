@@ -7,37 +7,46 @@ public class User {
 
     @SerializedName("id")
     @Expose
-    private int id ;
+    private String id ;
     @SerializedName("nom")
     @Expose
     private String nom ;
     @SerializedName("prenom")
     @Expose
     private String prenom ;
-    @SerializedName("datenaissance")
-    @Expose
-    private int dateN;
     @SerializedName("mail")
     @Expose
     private  String mail ;
     @SerializedName("phone")
     @Expose
     private  int phone;
+    @SerializedName("image_url")
+    @Expose
+    private String image ;
 
-    public User(int id, String nom, String prenom, int dateN, String mail, int phone) {
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+
+
+    public User(String id, String nom, String prenom,  String mail, int phone) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-        this.dateN = dateN;
         this.mail = mail;
         this.phone = phone;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -57,13 +66,7 @@ public class User {
         this.prenom = prenom;
     }
 
-    public int getDateN() {
-        return dateN;
-    }
 
-    public void setDateN(int dateN) {
-        this.dateN = dateN;
-    }
 
     public String getMail() {
         return mail;
@@ -80,4 +83,17 @@ public class User {
     public void setPhone(int phone) {
         this.phone = phone;
     }
+
+    public User(String id, String nom, String prenom, String mail, int phone, String image) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+        this.phone = phone;
+        this.image = image;
+    }
+    public User(){
+
+    }
 }
+

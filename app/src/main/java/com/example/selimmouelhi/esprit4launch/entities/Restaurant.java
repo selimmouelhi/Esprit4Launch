@@ -44,6 +44,18 @@ public class Restaurant {
     private  String imageUrl;
 
 
+
+    /*
+    * "id": 4,
+"name": "chaneb",
+"adresse": "petite ariana",
+"rating": 5,
+"ouvert": 0,
+"ferme": 1,
+"radius": 1000,
+"ratingS": 2.2,
+"ratingTasty": 4.5,
+"image": "CmRaAAAAz0GYEJK2R73NfmrVooyq4ZMxM288wYXuuzDjHI7ohnXQgsuoRqYVL7e0EOHH-cq67w4sw7KloICoIBj5FmOdT6JCi4dgdUs5hONeq0kb-8t2kP-r6bXwZi1I3kmPrallEhCpB80RGCWXhH__-vl_e_ZjGhTQfzpEwRQfTHbi4GttbrFyZBBlPQ"*/
     public Restaurant(int id, String name, String adresse, float rating, int ouvert, int ferme, float radius, String imageUrl) {
         this.id = id;
         this.name = name;

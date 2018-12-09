@@ -19,6 +19,7 @@
 </android.support.v7.widget.Toolbar>
 
     <Button
+        android:id="@+id/browse"
         android:layout_width="339dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"

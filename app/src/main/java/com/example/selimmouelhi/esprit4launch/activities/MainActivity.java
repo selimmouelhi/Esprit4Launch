@@ -1,8 +1,10 @@
 package com.example.selimmouelhi.esprit4launch.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.selimmouelhi.esprit4launch.R;
+import com.example.selimmouelhi.esprit4launch.Services.UserService;
+import com.example.selimmouelhi.esprit4launch.entities.User;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -60,6 +64,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CallbackManager callbackManager;
     private LoginButton loginButton;
     private Button button2;
+    private static final String TAG = "MainActivity";
+
+    public static final String PREFS_NAME = "prefs";
+    public static final String PREF_USER_ID = "user_id";
+    public static final String PREF_SIGNIN_METHOD = "signin_method";
+    public static final String METHOD_FACEBOOK = "FACEBOOK";
+    public static final String METHOD_GOOGLE = "GOOGLE";
+    public static final String PREF_IMAGE_URL = "image_url";
+    public static final String PREF_Name = "name";
+    public static final String PREF_prenom = "prenom";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +88,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         log_out = findViewById(R.id.log_out);
         loginButton = findViewById(R.id.login_button);
         button2 = findViewById(R.id.button2);
+
+
+
+
 
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -90,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button2.setOnClickListener(this);
 
 
-        printKeyHash();
+        //printKeyHash();
 
 
 
@@ -100,24 +120,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ;
 }
 
+// sign in facebook and getting data to our user
 private void signInFacebook(){
 
     callbackManager = CallbackManager.Factory.create();
     loginButton.setReadPermissions(Arrays.asList("public_profile","email","user_birthday"));
     loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
         @Override
-        public void onSuccess(LoginResult loginResult) {
+        public void onSuccess(final LoginResult loginResult) {
             String accessToken = loginResult.getAccessToken().getToken();
             GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                 @Override
                 public void onCompleted(JSONObject object, GraphResponse response) {
                     Log.d("response ",response.toString());
-                    getData(object);
+                    User user = new User();
+                    try {
+                        user.setId("f_" + object.getString("id"));
+                        user.setNom(object.getString("first_name"));
+                        user.setPrenom(object.getString("last_name"));
+                        user.setMail(object.getString("email"));
+                        user.setImage("https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?height=600");
+                        Log.d(TAG, "onCompleted: user: " + user);
+                        loginOrCreateFromSocialMedia(user, METHOD_FACEBOOK);
+                    }catch (JSONException e) {
+                        e.printStackTrace();
 
+                    }
                 }
             });
             Bundle parametres = new Bundle();
-            parametres.putString("fields","id,email,birthday,friends");
+            parametres.putString("fields","id,email,first_name,last_name,birthday,friends");
             request.setParameters(parametres);
             request.executeAsync();
 
@@ -147,16 +179,6 @@ private void signInFacebook(){
 
 }
 
-    private void getData(JSONObject object) {
-        try {
-            /*URL profile_picture = new URL("htttps://graph.facebook.com/"+object.getString("id")+"/picture?width=250&height=250");
-            Picasso.with(this).load(profile_picture.toString())into();*/
-            emailView.setText(object.getString("email"));
-            nameView.setText(object.getString("first_name"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
 
 
     private void printKeyHash() {
@@ -194,6 +216,7 @@ private void signInFacebook(){
     Intent signInIntent = mGoogleSignInClient.getSignInIntent();
     startActivityForResult(signInIntent,RC_SIGN_IN);
     }
+    /*
     private void signOut() {
         Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
             @Override
@@ -202,22 +225,29 @@ private void signInFacebook(){
             }
         });
     }
+    */
 
+
+    // get data from google and insert it to our user
     private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()){
 
             GoogleSignInAccount account = result.getSignInAccount();
-            String name = account.getDisplayName();
-            String email = account.getEmail();
-            nameView.setText(name);
-            emailView.setText(email);
-            urlView.setText("blabla");
+            User user = new User();
+            user.setId("g_" + account.getId());
+            user.setMail(account.getEmail());
+            user.setNom(account.getFamilyName());
+            user.setPrenom(account.getGivenName());
+            user.setImage(account.getPhotoUrl().toString());
+            System.out.println("g_" + account.getId());
+            System.out.println(account.getEmail());
+            System.out.println(account.getPhotoUrl().toString());
+            loginOrCreateFromSocialMedia(user, METHOD_GOOGLE);
             //Glide.with(this).load(img_url).into(image id); how to download image url
-            System.out.println(name+email);
-            updateUI(true);
+
         }
         else {
-            updateUI(false);
+            System.out.println("error in handle sign in result");
         }
     }
 
@@ -245,13 +275,24 @@ private void signInFacebook(){
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.sign_in_button:
-                signIn();
+                if(isLoggedIn()){
+                    goToHome();
+                    return;
+                }
+                else{
+                signIn();}
                 break;
             case R.id.log_out:
                 signOut();
-            break;
+                break;
+
             case R.id.login_button:
-                signInFacebook();
+                if(isLoggedIn()){
+                    goToHome();
+                    return;
+                }
+                else{
+                signInFacebook();}
                 break;
             case R.id.button2:
                 Intent intent = new Intent(this,HomeActivity.class);
@@ -264,6 +305,64 @@ private void signInFacebook(){
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+
+    private void loginOrCreateFromSocialMedia(final User user, final String signInMethod) {
+        UserService.getInstance().createFromSocialMedia(user, new UserService.CreateFromSocialMediaCallBack() {
+            @Override
+            public void onCompletion(User user) {
+
+                if(user == null){
+                    System.out.println("error in completion");
+                    return;
+                }
+                //add to sharef prefernces profile data
+                System.out.println("user is not null");
+                    getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+                        .edit()
+                        .putString(PREF_SIGNIN_METHOD, signInMethod)
+                        .putString(PREF_USER_ID, user.getId())
+                        .putString(PREF_IMAGE_URL, user.getImage())
+                        .putString(PREF_Name, user.getNom())
+                            .putString(PREF_prenom, user.getPrenom())
+                        .apply();
+                goToHome();
+            }
+        });
+    }
+
+    private void goToHome() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+    }
+
+        private boolean isLoggedIn() {
+            //Facebook check
+            AccessToken accessToken = AccessToken.getCurrentAccessToken();
+            boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+            if (isLoggedIn) {
+                Log.d(TAG, "isLoggedIn: facebook true");
+                return true;
+            }
+
+            //Google check
+            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+            isLoggedIn = account != null && !account.isExpired();
+            if (isLoggedIn) {
+                Log.d(TAG, "isLoggedIn: google true");
+                return true;
+            }
+            return  false;
+
+    }
+    private void signOut() {
+        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
+            @Override
+            public void onResult(@NonNull Status status) {
+                System.out.println("bye");
+            }
+        });
     }
 }
 
