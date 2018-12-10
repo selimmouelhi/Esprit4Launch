@@ -3,8 +3,13 @@
     package="com.example.selimmouelhi.esprit4launch">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-feature android:name="android.hardware.location.gps"/>
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -39,7 +44,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.HomeActivity" />
+        <activity android:name=".activities.RestaurantActivity"></activity>
         <activity android:name=".activities.ViewMore"></activity>
+        <activity android:name=".activities.RestListActivity" />
+        <activity android:name=".activities.MapActivity" />
+        <activity android:name=".activities.RestDatailsActivity" />
+        <activity android:name=".activities.RestReviewsActivity" />
     </application>
 
 </manifest>

@@ -43,19 +43,55 @@ public class Restaurant {
     @Expose
     private  String imageUrl;
 
+    @SerializedName("description")
+    @Expose
+    private  String description;
 
+    public int getOuvert() {
+        return ouvert;
+    }
+
+    public int getFerme() {
+        return ferme;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Restaurant(){
+
+    }
+
+    public Restaurant(int id, String name, String adresse, float rating, int ouvert, int ferme, float radius, float ratingS, float ratingTasty, String imageUrl, String description) {
+        this.id = id;
+        this.name = name;
+        this.adresse = adresse;
+        this.rating = rating;
+        this.ouvert = ouvert;
+        this.ferme = ferme;
+        this.radius = radius;
+        this.ratingS = ratingS;
+        this.ratingTasty = ratingTasty;
+        this.imageUrl = imageUrl;
+        this.description = description;
+    }
 
     /*
-    * "id": 4,
-"name": "chaneb",
-"adresse": "petite ariana",
-"rating": 5,
-"ouvert": 0,
-"ferme": 1,
-"radius": 1000,
-"ratingS": 2.2,
-"ratingTasty": 4.5,
-"image": "CmRaAAAAz0GYEJK2R73NfmrVooyq4ZMxM288wYXuuzDjHI7ohnXQgsuoRqYVL7e0EOHH-cq67w4sw7KloICoIBj5FmOdT6JCi4dgdUs5hONeq0kb-8t2kP-r6bXwZi1I3kmPrallEhCpB80RGCWXhH__-vl_e_ZjGhTQfzpEwRQfTHbi4GttbrFyZBBlPQ"*/
+        * "id": 4,
+    "name": "chaneb",
+    "adresse": "petite ariana",
+    "rating": 5,
+    "ouvert": 0,
+    "ferme": 1,
+    "radius": 1000,
+    "ratingS": 2.2,
+    "ratingTasty": 4.5,
+    "image": "CmRaAAAAz0GYEJK2R73NfmrVooyq4ZMxM288wYXuuzDjHI7ohnXQgsuoRqYVL7e0EOHH-cq67w4sw7KloICoIBj5FmOdT6JCi4dgdUs5hONeq0kb-8t2kP-r6bXwZi1I3kmPrallEhCpB80RGCWXhH__-vl_e_ZjGhTQfzpEwRQfTHbi4GttbrFyZBBlPQ"*/
     public Restaurant(int id, String name, String adresse, float rating, int ouvert, int ferme, float radius, String imageUrl) {
         this.id = id;
         this.name = name;

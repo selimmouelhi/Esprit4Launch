@@ -1,5 +1,6 @@
 package com.example.selimmouelhi.esprit4launch.activities;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -46,7 +47,8 @@ public class HomeActivity extends AppCompatActivity {
                         browse.setVisibility(View.INVISIBLE);
                         return  true;
                     case R.id.restaurant:
-                        System.out.println("here resaurant");
+                        Intent intent =  new Intent(getApplicationContext(),RestaurantActivity.class);
+                        startActivity(intent);
                         return  true;
                     case R.id.Cafe:
                         System.out.println("here cafe");

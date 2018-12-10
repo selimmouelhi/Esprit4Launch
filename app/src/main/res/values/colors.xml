@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#005731</color>
     <color name="colorAccent">#D81B60</color>
     <color name="whiteColor">#FFFF</color>
+    <color name="mapboxGreen">#008407</color>
 </resources>
