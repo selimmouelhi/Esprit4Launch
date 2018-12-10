@@ -17,17 +17,7 @@
 
         />
 
-    <Button
-        android:id="@+id/log_out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="53dp"
-        android:layout_marginLeft="53dp"
-        android:layout_marginBottom="87dp"
-        android:text="Sign Out" />
+
 
     <TextView
         android:id="@+id/name"
@@ -67,17 +57,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="300dp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/log_out"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="139dp"
-        android:layout_marginRight="139dp"
-        android:text="gonext" />
 
 
 </RelativeLayout>

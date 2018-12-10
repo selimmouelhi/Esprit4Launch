@@ -85,9 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nameView = findViewById(R.id.name);
         emailView = findViewById(R.id.email);
         urlView = findViewById(R.id.url);
-        log_out = findViewById(R.id.log_out);
         loginButton = findViewById(R.id.login_button);
-        button2 = findViewById(R.id.button2);
 
 
 
@@ -105,9 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
         signInButton.setOnClickListener(this);
-        log_out.setOnClickListener(this);
         loginButton.setOnClickListener(this);
-        button2.setOnClickListener(this);
 
 
         //printKeyHash();
@@ -282,9 +278,7 @@ private void signInFacebook(){
                 else{
                 signIn();}
                 break;
-            case R.id.log_out:
-                signOut();
-                break;
+
 
             case R.id.login_button:
                 if(isLoggedIn()){
@@ -294,10 +288,7 @@ private void signInFacebook(){
                 else{
                 signInFacebook();}
                 break;
-            case R.id.button2:
-                Intent intent = new Intent(this,HomeActivity.class);
-                startActivity(intent);
-                break;
+
         }
 
     }
