@@ -56,12 +56,14 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_profile, container, false);
         Activity activity = getActivity();
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
+        googleApiClient = new GoogleApiClient.Builder(getContext()).enableAutoManage(getActivity(),this).addApi(Auth.GOOGLE_SIGN_IN_API,gso).build();
+
         mGoogleSignInClient = GoogleSignIn.getClient(activity, gso);
 
-        googleApiClient = new GoogleApiClient.Builder(getContext()).enableAutoManage(getActivity(),this).addApi(Auth.GOOGLE_SIGN_IN_API,gso).build();
         userImage = view.findViewById(R.id.profile_picture);
         nameUser = view.findViewById(R.id.name_text);
         methodsignin = view.findViewById(R.id.method_text);
@@ -91,14 +93,14 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
     private void signout(){
 
         //signoutGoogle
-        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
-            @Override
-            public void onResult(@NonNull Status status) {
-                SharedPreferences sharedPreferences = getContext()  .getSharedPreferences(MainActivity.PREFS_NAME,getActivity().MODE_PRIVATE);
-                sharedPreferences.edit().clear().commit();
-                goTohome();
-            }
-        });
+        if (googleApiClient.isConnected()) {
+            Auth.GoogleSignInApi.signOut(googleApiClient);
+            googleApiClient.disconnect();
+            googleApiClient.connect();
+            goTohome();
+        }
+
+
 
         //facebooksignout
         AccessToken token = AccessToken.getCurrentAccessToken();
@@ -132,4 +134,10 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
         startActivity(intent);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        googleApiClient.stopAutoManage(getActivity());
+        googleApiClient.disconnect();
+    }
 }

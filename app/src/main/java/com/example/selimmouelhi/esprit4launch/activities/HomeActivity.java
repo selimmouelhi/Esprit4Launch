@@ -12,8 +12,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.selimmouelhi.esprit4launch.R;
+import com.example.selimmouelhi.esprit4launch.fragments.FriendsFrag;
 import com.example.selimmouelhi.esprit4launch.fragments.HomeFragm;
 import com.example.selimmouelhi.esprit4launch.fragments.HomescreenFragment;
+import com.example.selimmouelhi.esprit4launch.fragments.MyFriends;
 import com.example.selimmouelhi.esprit4launch.fragments.ProfileFragment;
 
 
@@ -51,7 +53,11 @@ public class HomeActivity extends AppCompatActivity {
 
                         return  true;
                     case R.id.friends:
-                        System.out.println("here friends");
+
+                        MyFriends ff = new MyFriends();
+                        browse.setVisibility(View.INVISIBLE);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout,ff).commit();
+
 
                         return  true;
 

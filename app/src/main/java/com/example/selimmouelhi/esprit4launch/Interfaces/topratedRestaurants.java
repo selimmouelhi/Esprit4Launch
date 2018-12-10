@@ -12,9 +12,9 @@ public interface topratedRestaurants {
 
     String Base_Url = Constant.root_server+"web_services/";
 
+    @GET("topratedRestaurants")
+    Call<List<Restaurant>> getTopratedRes();
 
-     @GET("topratedRestaurants")
-     Call<List<Restaurant>> getTopratedRes();
 
 
     @GET("alltopratedRestaurants")
