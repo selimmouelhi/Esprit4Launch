@@ -2,7 +2,10 @@ package com.example.selimmouelhi.esprit4launch.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,8 @@ import com.example.selimmouelhi.esprit4launch.R;
 import com.example.selimmouelhi.esprit4launch.Utils.ImageLoader;
 import com.example.selimmouelhi.esprit4launch.entities.Restaurant;
 import com.example.selimmouelhi.esprit4launch.entities.User;
+import com.example.selimmouelhi.esprit4launch.fragments.FriendProfile;
+import com.example.selimmouelhi.esprit4launch.fragments.FriendsFrag;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -23,10 +28,10 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
 
     private static final String TAG= "FriendsAdapter";
     private static ArrayList<User> friends = new ArrayList<User>();
-    private Context mcontext ;
+    private Activity mcontext ;
 
 
-    public FriendsAdapter( Context mcontext,ArrayList<User> friends) {
+    public FriendsAdapter( Activity mcontext,ArrayList<User> friends) {
         this.friends = friends;
         this.mcontext = mcontext;
         System.out.println(friends.get(0).getNom()+"in constructor");
@@ -46,7 +51,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
 
         System.out.println(viewHolder.getAdapterPosition()+"in bind");
         System.out.println(friends.get(viewHolder.getAdapterPosition()).getNom()+"in bind");
@@ -55,6 +60,22 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
         Picasso.with(mcontext).load(friends.get(viewHolder.getAdapterPosition()).getImage()).into(viewHolder.friendPicture);
         viewHolder.nameView.setText(friends.get(viewHolder.getAdapterPosition()).getNom()+" "+friends.get(viewHolder.getAdapterPosition()).getPrenom());
         System.out.println(friends.size());
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                User user = friends.get(viewHolder.getAdapterPosition());
+                FriendProfile friendProfile = new FriendProfile();
+                friendProfile.setUser(user);
+                friendProfile.setState("friends");
+                FragmentManager manager = ((AppCompatActivity)mcontext).getSupportFragmentManager();
+
+                manager.beginTransaction().replace(R.id.framelayout,friendProfile).commit();
+
+
+
+
+            }
+        });
 
     }
 

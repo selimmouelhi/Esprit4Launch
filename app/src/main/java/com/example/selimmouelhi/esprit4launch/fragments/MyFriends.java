@@ -2,6 +2,7 @@ package com.example.selimmouelhi.esprit4launch.fragments;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -74,9 +75,10 @@ public class MyFriends extends Fragment {
                     listView.setVisibility(View.VISIBLE);
                     LinearLayoutManager llm = new LinearLayoutManager(getContext());
                     listView.setLayoutManager(llm);
-                    FriendsAdapter friendsAdapter = new FriendsAdapter(getContext(), friends);
+                    FriendsAdapter friendsAdapter = new FriendsAdapter(getActivity(), friends);
                     friendsAdapter.notifyDataSetChanged();
                     listView.setAdapter(friendsAdapter);
+
                 }
             }
 
