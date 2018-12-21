@@ -14,7 +14,7 @@ import retrofit2.http.POST;
 
 public interface UserInterface {
 
-    String Base_Url = Constant.root_server_user+"web_services/";
+    String Base_Url = Constant.root_server_user+"/";
 
     @POST("check")
     Call<User> createFromSocialMedia(@Body User user);

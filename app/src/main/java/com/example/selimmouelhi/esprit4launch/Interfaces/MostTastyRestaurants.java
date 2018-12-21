@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 
 public interface MostTastyRestaurants {
 
-    String Base_Url = Constant.root_server+"web_services/";
+    String Base_Url = Constant.root_server_restaurants+"/";
 
 
     @GET("mosttasty")

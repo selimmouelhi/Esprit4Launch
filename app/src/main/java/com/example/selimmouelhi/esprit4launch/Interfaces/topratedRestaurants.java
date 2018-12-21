@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 
 public interface topratedRestaurants {
 
-    String Base_Url = Constant.root_server+"web_services/";
+    String Base_Url = Constant.root_server_restaurants+"/";
 
     @GET("topratedRestaurants")
     Call<List<Restaurant>> getTopratedRes();

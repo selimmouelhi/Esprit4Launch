@@ -16,16 +16,16 @@ import retrofit2.http.Query;
 public interface FriendsInterface {
 
 
-    String Base_Url = Constant.root_server_friends+"web_services/";
+    String Base_Url = Constant.root_server_friends+"/";
 
-    @GET("friends/{id}")
+    @GET("getfriends/{id}")
     Call<List<User>> getFriendsList(@Path("id") String id_user);
 
     @DELETE("deletefriend/{id_user}/{id_friend}")
     Call<Void> deleteFriend(@Path("id_user")String id_user,@Path("id_friend")String id_friend);
 
 
-    @POST("deletefriend/{id_user}/{id_friend}")
+    @POST("addfriend/{id_user}/{id_friend}")
     Call<Void> addFriend(@Path("id_user")String id_user,@Path("id_friend")String id_friend);
 
 

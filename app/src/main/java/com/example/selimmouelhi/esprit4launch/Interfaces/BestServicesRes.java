@@ -11,7 +11,7 @@ import retrofit2.http.GET;
 public interface BestServicesRes {
 
 
-    String Base_Url = Constant.root_server+"web_services/";
+    String Base_Url = Constant.root_server_restaurants+"/";
 
 
     @GET("bestservices")
