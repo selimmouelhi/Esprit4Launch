@@ -1,6 +1,9 @@
 package com.example.selimmouelhi.esprit4launch.fragments;
 
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -9,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,6 +28,7 @@ import com.example.selimmouelhi.esprit4launch.entities.User;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,6 +42,7 @@ public class MyFriends extends Fragment {
     private ArrayList<User> friends;
     private RecyclerView listView;
     TextView nofriends;
+    Dialog popupDialog;
 
 
     public MyFriends() {
@@ -89,5 +95,8 @@ public class MyFriends extends Fragment {
         });
         return  view;
     }
+
+
+
 
 }

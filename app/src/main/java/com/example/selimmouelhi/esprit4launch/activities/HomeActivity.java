@@ -24,14 +24,12 @@ public class HomeActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     private BottomNavigationView bottomNavigationView;
-    Button browse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         bottomNavigationView = findViewById(R.id.appbottom);
-        browse = findViewById(R.id.browse);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -39,12 +37,10 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.home:
                         HomescreenFragment lf = new HomescreenFragment();
                         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout,lf).commit();
-                        browse.setVisibility(View.VISIBLE);
                         return  true;
                     case R.id.profile:
                         ProfileFragment pf = new ProfileFragment();
                         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout,pf).commit();
-                        browse.setVisibility(View.INVISIBLE);
                         return  true;
                     case R.id.restaurant:
                         Intent intent =  new Intent(getApplicationContext(),RestaurantActivity.class);
@@ -57,7 +53,6 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.friends:
 
                         MyFriends ff = new MyFriends();
-                        browse.setVisibility(View.INVISIBLE);
                         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout,ff).commit();
 
 

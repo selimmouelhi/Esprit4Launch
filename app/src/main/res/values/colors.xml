@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#005731</color>
+    <color name="colorPrimaryDark">#2f333f</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="whiteColor">#FFFF</color>
     <color name="mapboxGreen">#008407</color>
+    <color name="bluedark">#2f333f</color>
+    <color name="bluelight">#49acd5</color>
+    <color name="green">#45bc62</color>
+    <color name="orange">#eaad43</color>
+    <color name="whiteColor">#FFFF</color>
+    <color name="blackcolor">#000000</color>
+    <color name="gris">#D8D8D8</color>
+
+
+
+
+
+
 </resources>

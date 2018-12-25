@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="350dp"
+    android:layout_height="475dp"
+    android:background="@color/colorPrimaryDark"
+    android:layout_gravity="center"
+    android:padding="5dp"
+    >
+ <TextView
+     android:id="@+id/exit"
+     android:layout_width="30dp"
+     android:layout_height="30dp"
+     android:textColor="@color/whiteColor"
+     android:text="X"
+     android:layout_gravity="end"
+     android:gravity="center"
+     android:background="@drawable/cerclebackground"
+     android:textStyle="bold"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_img"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/login"/>
+        <TextView
+            android:id="@+id/namePopUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selim Mouelhi "
+        android:textColor="@color/whiteColor"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:background="@color/orange"
+            android:gravity="center">
+            
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10"
+            android:textColor="@color/whiteColor"
+            android:textSize="18sp"
+                android:id="@+id/numberFriends"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Friends"
+                android:textColor="@color/whiteColor"
+                android:textSize="18sp"/>
+            
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:background="@color/green"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textColor="@color/whiteColor"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Favorites"
+                android:textColor="@color/whiteColor"
+                android:textSize="18sp"
+                android:id="@+id/numberFavorites"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:background="@color/bluelight"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textColor="@color/whiteColor"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Followers"
+                android:textColor="@color/whiteColor"
+                android:textSize="18sp"
+                android:id="@+id/numberFollowers"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="View Profile"
+    android:layout_marginTop="10dp"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/buttonstyle"
+    android:textColor="@color/whiteColor"
+    android:textStyle="bold"
+    android:id="@+id/viewProfile"/>
+</LinearLayout>

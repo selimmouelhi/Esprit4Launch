@@ -6,11 +6,36 @@
     tools:context=".fragments.HomescreenFragment">
 
     <!-- TODO: Update blank fragment layout -->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <Button
+        android:id="@+id/browse"
+        android:layout_width="339dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:background="#FFFFFF"
+        android:drawableLeft="@drawable/food"
+        android:drawableRight="@drawable/next"
+        android:text="Browse Nearby Restaurants " />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+
+        >
 
         <FrameLayout
             android:id="@+id/recommandedres"
@@ -69,5 +94,6 @@
         </FrameLayout>
 
     </LinearLayout>
+</LinearLayout>
 
 </ScrollView>

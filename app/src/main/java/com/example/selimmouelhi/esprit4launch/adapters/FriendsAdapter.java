@@ -14,8 +14,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.selimmouelhi.esprit4launch.DialogFragment.PopupUser;
 import com.example.selimmouelhi.esprit4launch.R;
 import com.example.selimmouelhi.esprit4launch.Utils.ImageLoader;
+import com.example.selimmouelhi.esprit4launch.activities.HomeActivity;
+import com.example.selimmouelhi.esprit4launch.activities.MainActivity;
 import com.example.selimmouelhi.esprit4launch.entities.Restaurant;
 import com.example.selimmouelhi.esprit4launch.entities.User;
 import com.example.selimmouelhi.esprit4launch.fragments.FriendProfile;
@@ -64,12 +67,16 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 User user = friends.get(viewHolder.getAdapterPosition());
-                FriendProfile friendProfile = new FriendProfile();
+               /* FriendProfile friendProfile = new FriendProfile();
                 friendProfile.setUser(user);
                 friendProfile.setState("friends");
                 FragmentManager manager = ((AppCompatActivity)mcontext).getSupportFragmentManager();
 
-                manager.beginTransaction().replace(R.id.framelayout,friendProfile).commit();
+                manager.beginTransaction().replace(R.id.framelayout,friendProfile).commit();*/
+
+                PopupUser popupUser = new PopupUser();
+                popupUser.setUser(user);
+                popupUser.show(((HomeActivity)mcontext).getSupportFragmentManager(),"popupDialog");
 
 
 
