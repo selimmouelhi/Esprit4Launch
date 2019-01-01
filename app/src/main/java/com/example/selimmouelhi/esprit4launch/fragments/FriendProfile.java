@@ -41,6 +41,11 @@ public class FriendProfile extends Fragment {
     ImageView friendship ;
     Button followunfollow;
     TextView addunadd;
+    TextView email ;
+    TextView phone ;
+    TextView followingsnbr;
+    TextView friendsnbr;
+    TextView followersnbr;
     private static User user;
     private static String State;
     public FriendProfile() {
@@ -58,6 +63,22 @@ public class FriendProfile extends Fragment {
         friendship = view.findViewById(R.id.friendunfriend);
         followunfollow = view.findViewById(R.id.followunfollow);
         addunadd = view.findViewById(R.id.addunadd);
+        email = view.findViewById(R.id.emailProfile);
+        phone = view.findViewById(R.id.phone_profile);
+        followingsnbr = view.findViewById(R.id.numberfollwings);
+        friendsnbr= view.findViewById(R.id.numberFriends);
+        followersnbr = view.findViewById(R.id.numberFollowers);
+
+        followingsnbr.setText(Integer.toString(user.getFollowing()));
+        followersnbr.setText(Integer.toString(user.getFollowers()));
+        friendsnbr.setText(Integer.toString(user.getFriends()));
+        email.setText(user.getMail());
+        phone.setText(Integer.toString(user.getPhone()));
+
+
+
+
+
         layout1 = new ConstraintSet();
         layout2 = new ConstraintSet();
         constraintLayout = view.findViewById(R.id.extended);

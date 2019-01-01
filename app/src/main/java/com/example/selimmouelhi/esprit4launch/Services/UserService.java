@@ -67,6 +67,7 @@ public class UserService {
                 }
                 Log.d(TAG, "onResponse: body: " + response.body());
                 System.out.println(response.body().getNom()+"in t3adina ");
+                System.out.println(response.body().toString()+"helpp");
                 callBack.onCompletion(response.body());
                 System.out.println("c bon t3adina");
 

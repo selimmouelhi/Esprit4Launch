@@ -19,30 +19,16 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskJars.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskJars.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/DialogFragment/PopupUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/DialogFragment/PopupUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/FriendsInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/FriendsInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/UserInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Utils/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Utils/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/activities/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/activities/HomeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Services/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/activities/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/entities/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/FriendProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/FriendProfile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/ProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/ProfileFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_friend_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_friend_profile.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/userpopup.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/userpopup.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/esprit4launch.iml" beforeDir="false" afterPath="$PROJECT_DIR$/esprit4launch.iml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -68,8 +54,8 @@
       <file leaf-file-name="ProfileFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/ProfileFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="48" selection-start-line="48" selection-end-line="48" />
+            <state relative-caret-position="566">
+              <caret line="98" column="60" selection-start-line="98" selection-start-column="60" selection-end-line="98" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -83,53 +69,68 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FollowerInterface.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/FollowerInterface.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Services/UserService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="45" column="55" selection-start-line="45" selection-start-column="55" selection-end-line="45" selection-end-column="55" />
+            <state relative-caret-position="314">
+              <caret line="69" column="67" lean-forward="true" selection-start-line="69" selection-start-column="67" selection-end-line="69" selection-end-column="67" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FriendsInterface.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/FriendsInterface.java">
+      <file leaf-file-name="suggestedMoreFrag.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/suggestedMoreFrag.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="32" column="66" selection-start-line="32" selection-start-column="66" selection-end-line="32" selection-end-column="66" />
+            <state relative-caret-position="279">
+              <caret line="70" selection-start-line="70" selection-end-line="70" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_friend_profile.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_friend_profile.xml">
+      <file leaf-file-name="topratedRestaurants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/topratedRestaurants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
+            <state relative-caret-position="90">
+              <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
             </state>
           </provider>
-          <provider editor-type-id="android-designer2">
+        </entry>
+      </file>
+      <file leaf-file-name="followers_row.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/followers_row.xml">
+          <provider editor-type-id="text-editor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2">
             <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PopupUser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/DialogFragment/PopupUser.java">
+      <file leaf-file-name="followings_row.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/followings_row.xml">
+          <provider editor-type-id="text-editor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="friendsinprof_row.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/friendsinprof_row.xml">
+          <provider editor-type-id="text-editor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/activities/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="48" column="54" selection-start-line="48" selection-start-column="54" selection-end-line="48" selection-end-column="54" />
+            <state relative-caret-position="43">
+              <caret line="307" column="66" selection-start-line="307" selection-start-column="66" selection-end-line="307" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -137,8 +138,8 @@
       <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/entities/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1301">
-              <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+            <state relative-caret-position="233">
+              <caret line="91" column="21" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
               <folding>
                 <element signature="e#605#606#0" expanded="true" />
                 <element signature="e#634#635#0" expanded="true" />
@@ -156,28 +157,11 @@
                 <element signature="e#1083#1084#0" expanded="true" />
                 <element signature="e#1126#1127#0" expanded="true" />
                 <element signature="e#1164#1165#0" expanded="true" />
+                <element signature="e#2088#2089#0" expanded="true" />
+                <element signature="e#2120#2121#0" expanded="true" />
+                <element signature="e#2167#2168#0" expanded="true" />
+                <element signature="e#2209#2210#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="userpopup.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/userpopup.xml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="855">
-              <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer2">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FriendsAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/adapters/FriendsAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="68" column="65" selection-start-line="68" selection-start-column="65" selection-end-line="68" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -190,8 +174,8 @@
         <option value="layoutResourceFile_vertical" />
         <option value="Class" />
         <option value="resourceFile" />
-        <option value="layoutResourceFile" />
         <option value="Interface" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -2461,7 +2445,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/topratedRestaurants.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/MostTastyRestaurants.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Services/UserService.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_homescreen.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/cerclebackground.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/buttonstyle.xml" />
@@ -2475,24 +2458,28 @@
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_person_add_black_24dp.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_phone_black_24dp.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_rate_review_black_24dp.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/activities/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/signoutstyle.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/activities/HomeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/ProfileFragment.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/FriendProfile.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_friend_profile_extended.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_friend_profile.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/UserInterface.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Utils/Constant.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/FollowerInterface.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/FriendsInterface.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/userpopup.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/DialogFragment/PopupUser.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_friend_profile.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/FriendProfile.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/entities/User.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/ProfileFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Services/UserService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/followers_row.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/followings_row.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/friendsinprof_row.xml" />
       </list>
     </option>
   </component>
@@ -2532,6 +2519,13 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="esprit4launch" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="activities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="esprit4launch" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="esprit4launch" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="entities" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -2539,7 +2533,32 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="esprit4launch" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="fragments" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="esprit4launch" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="esprit4launch" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="Interfaces" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="esprit4launch" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="esprit4launch" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="Services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="esprit4launch" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="esprit4launch" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
               <item name="esprit4launch" type="1abcf292:AndroidViewProjectNode" />
@@ -2553,7 +2572,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
-    <property name="device.picker.selection" value="Nexus_4_API_28" />
+    <property name="device.picker.selection" value="Nexus_6P_API_28" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
@@ -2692,11 +2711,11 @@
       <window_info id="Image Layers" order="2" />
       <window_info id="Build Variants" order="2" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.29971388" side_tool="true" visible="true" weight="0.3306011" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.3004292" side_tool="true" visible="true" weight="0.3306011" />
       <window_info anchor="right" id="Preview" order="3" weight="0.3297568" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.70028615" visible="true" weight="0.3306011" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.69957083" visible="true" weight="0.3306011" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49928468" weight="0.329235" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49928468" weight="0.329235" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4985694" weight="0.329235" />
       <window_info anchor="bottom" id="Logcat" order="7" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
@@ -2722,40 +2741,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_view_more.xml">
-      <provider editor-type-id="text-editor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_rest_datails.xml">
-      <provider editor-type-id="text-editor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_homescreen.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -2793,13 +2778,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/MyFriends.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1005">
-          <caret line="99" selection-start-line="99" selection-end-line="99" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/buttonstyle.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -2811,13 +2789,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/MostTastyRestaurants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/topratedRestaurants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
@@ -2918,13 +2889,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/activities/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4035">
-          <caret line="319" column="60" selection-start-line="319" selection-start-column="60" selection-end-line="319" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -2969,30 +2933,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/FriendsFrag.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3360">
-          <caret line="224" column="3" selection-start-line="224" selection-start-column="3" selection-end-line="232" selection-end-column="39" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_friend_profile_extended.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -3027,13 +2967,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/FriendProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="179" selection-start-line="179" selection-end-line="179" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/BestServicesRes.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -3055,23 +2988,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/FollowerInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/ProfileFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/userpopup.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="855">
@@ -3082,23 +2998,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_friend_profile.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Services/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="45" column="55" selection-start-line="45" selection-start-column="55" selection-end-line="45" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/DialogFragment/PopupUser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -3106,17 +3005,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/UserInterface.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/FriendsInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="17" column="30" selection-start-line="17" selection-end-line="18" />
+        <state relative-caret-position="30">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/FollowerInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/FriendsFrag.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_friend_profile.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="171" column="8" selection-start-line="171" selection-start-column="8" selection-end-line="171" selection-end-column="8" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/FriendProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10">
+          <caret line="81" column="38" selection-start-line="81" selection-start-column="38" selection-end-line="81" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="133" column="20" selection-start-line="133" selection-start-column="20" selection-end-line="133" selection-end-column="20" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/MyFriends.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="707">
+          <caret line="99" selection-start-line="99" selection-end-line="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/ProfileFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="98" column="60" selection-start-line="98" selection-start-column="60" selection-end-line="98" selection-end-column="60" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/entities/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1301">
-          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+        <state relative-caret-position="233">
+          <caret line="91" column="21" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
           <folding>
             <element signature="e#605#606#0" expanded="true" />
             <element signature="e#634#635#0" expanded="true" />
@@ -3134,15 +3101,71 @@
             <element signature="e#1083#1084#0" expanded="true" />
             <element signature="e#1126#1127#0" expanded="true" />
             <element signature="e#1164#1165#0" expanded="true" />
+            <element signature="e#2088#2089#0" expanded="true" />
+            <element signature="e#2120#2121#0" expanded="true" />
+            <element signature="e#2167#2168#0" expanded="true" />
+            <element signature="e#2209#2210#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/FriendsInterface.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/UserInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="32" column="66" selection-start-line="32" selection-start-column="66" selection-end-line="32" selection-end-column="66" />
+        <state relative-caret-position="90">
+          <caret line="17" column="30" selection-start-line="17" selection-end-line="18" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/activities/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="43">
+          <caret line="307" column="66" selection-start-line="307" selection-start-column="66" selection-end-line="307" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Services/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="69" column="67" lean-forward="true" selection-start-line="69" selection-start-column="67" selection-end-line="69" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/fragments/suggestedMoreFrag.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="70" selection-start-line="70" selection-end-line="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/selimmouelhi/esprit4launch/Interfaces/topratedRestaurants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/followers_row.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/followings_row.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/friendsinprof_row.xml">
+      <provider editor-type-id="text-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
   </component>

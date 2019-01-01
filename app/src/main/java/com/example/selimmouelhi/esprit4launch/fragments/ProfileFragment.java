@@ -77,6 +77,9 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
         signout = view.findViewById(R.id.signoutProf);
         emailProf = view.findViewById(R.id.emailProfile);
         phoneProfile = view.findViewById(R.id.phone_profile);
+        numberofFavorites = view.findViewById(R.id.numberFavorites);
+        numberofFriends = view.findViewById(R.id.numberFriends);
+        numberofFollowers = view.findViewById(R.id.numberFollowers);
 
 
 
@@ -87,7 +90,13 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
         final String method = activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getString(MainActivity.PREF_SIGNIN_METHOD, null);
         String email =  activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getString(MainActivity.PREF_mail, null);
         int phone =  activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getInt(MainActivity.PREF_phone, 0);
+        int friends =  activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getInt(MainActivity.PREF_friends, 0);
+        int favorites =  activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getInt(MainActivity.PREF_favorites, 0);
+        int followers =  activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getInt(MainActivity.PREF_followers, 0);
 
+        numberofFollowers.setText(Integer.toString(followers));
+        numberofFriends.setText(Integer.toString(friends));
+        numberofFavorites.setText(Integer.toString(favorites));
         nameUser.setText(prenom+" "+name);
         methodsignin.setText("Signed in with "+method);
         Picasso.with(getContext()).load(image_url).into(userImage);

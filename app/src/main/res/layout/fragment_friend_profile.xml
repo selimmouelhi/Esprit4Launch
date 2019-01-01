@@ -152,8 +152,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="336dp"
-        android:layout_height="wrap_content"
+        android:layout_width="328dp"
+        android:layout_height="147dp"
         android:layout_marginStart="8dp"
 
 
@@ -164,9 +164,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintHorizontal_bias="0.864"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6">
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -267,13 +268,13 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="216dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/signoutstyle"
         android:text="Follow"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.553"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/linearLayout3" />
 

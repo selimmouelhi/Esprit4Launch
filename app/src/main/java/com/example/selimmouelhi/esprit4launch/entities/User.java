@@ -24,22 +24,6 @@ public class User {
     @Expose
     private String image ;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", mail='" + mail + '\'' +
-                ", phone=" + phone +
-                ", image='" + image + '\'' +
-                ", status='" + status + '\'' +
-                ", followers=" + followers +
-                ", following=" + following +
-                ", friends=" + friends +
-                '}';
-    }
-
     public String getStatus() {
         return status;
     }
@@ -85,6 +69,42 @@ public class User {
     @SerializedName("friends")
     @Expose
     private int  friends ;
+
+
+    @SerializedName("favorites")
+    @Expose
+    private int  favorites ;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", mail='" + mail + '\'' +
+                ", phone=" + phone +
+                ", image='" + image + '\'' +
+                ", status='" + status + '\'' +
+                ", followers=" + followers +
+                ", following=" + following +
+                ", friends=" + friends +
+                ", favorites=" + favorites +
+                ", " +
+                '}';
+    }
+
+    public int getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(int favorites) {
+        this.favorites = favorites;
+    }
+
+
+
+
+
 
     public String getImage() {
         return image;

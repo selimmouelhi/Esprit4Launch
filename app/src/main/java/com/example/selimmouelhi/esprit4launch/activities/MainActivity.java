@@ -76,6 +76,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String PREF_prenom = "prenom";
     public static final String PREF_mail = "mail";
     public static final String PREF_phone = "phone";
+    public static final String PREF_followers = "followers";
+    public static final String PREF_friends = "friends";
+    public static final String PREF_favorites = "favorites";
 
 
 
@@ -312,6 +315,7 @@ private void signInFacebook(){
                 }
                 //add to sharef prefernces profile data
                 System.out.println("user is not null");
+                System.out.println(user.toString() + " in main");
                     getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
                         .edit()
                         .putString(PREF_SIGNIN_METHOD, signInMethod)
@@ -321,6 +325,9 @@ private void signInFacebook(){
                             .putString(PREF_prenom, user.getPrenom())
                             .putString(PREF_mail,user.getMail())
                             .putInt(PREF_phone,user.getPhone())
+                            .putInt(PREF_followers, user.getFollowers())
+                            .putInt(PREF_favorites,user.getFavorites())
+                            .putInt(PREF_friends,user.getFriends())
                         .apply();
                 goToHome();
             }
