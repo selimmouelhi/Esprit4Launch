@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String PREF_IMAGE_URL = "image_url";
     public static final String PREF_Name = "name";
     public static final String PREF_prenom = "prenom";
+    public static final String PREF_mail = "mail";
+    public static final String PREF_phone = "phone";
 
 
 
@@ -317,6 +319,8 @@ private void signInFacebook(){
                         .putString(PREF_IMAGE_URL, user.getImage())
                         .putString(PREF_Name, user.getNom())
                             .putString(PREF_prenom, user.getPrenom())
+                            .putString(PREF_mail,user.getMail())
+                            .putInt(PREF_phone,user.getPhone())
                         .apply();
                 goToHome();
             }

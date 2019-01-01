@@ -1,6 +1,7 @@
 package com.example.selimmouelhi.esprit4launch.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +31,12 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         bottomNavigationView = findViewById(R.id.appbottom);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Holy Moly");
+        toolbar.setTitleTextColor(Color.parseColor("white"));
+        toolbar.setSubtitleTextColor(Color.parseColor("white"));
+        toolbar.setSubtitle("welcome");
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -37,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.home:
                         HomescreenFragment lf = new HomescreenFragment();
                         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout,lf).commit();
+
                         return  true;
                     case R.id.profile:
                         ProfileFragment pf = new ProfileFragment();
@@ -45,9 +53,11 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.restaurant:
                         Intent intent =  new Intent(getApplicationContext(),RestaurantActivity.class);
                         startActivity(intent);
+
                         return  true;
                     case R.id.Cafe:
                         System.out.println("here cafe");
+
 
                         return  true;
                     case R.id.friends:
@@ -69,10 +79,7 @@ public class HomeActivity extends AppCompatActivity {
         });
         HomescreenFragment lf = new HomescreenFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.framelayout,lf).commit();
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Holy Moly");
-        toolbar.setSubtitle("welcome");
+
 
     }
 

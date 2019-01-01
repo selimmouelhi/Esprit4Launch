@@ -56,12 +56,13 @@
             android:gravity="center">
             
             <TextView
+                android:id="@+id/friendsnbr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10"
             android:textColor="@color/whiteColor"
             android:textSize="18sp"
-                android:id="@+id/numberFriends"/>
+               />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,18 +82,20 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/favoritesnbr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10"
                 android:textColor="@color/whiteColor"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Favorites"
                 android:textColor="@color/whiteColor"
                 android:textSize="18sp"
-                android:id="@+id/numberFavorites"/>
+                />
 
 
         </LinearLayout>
@@ -105,18 +108,20 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/followersnbr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10"
                 android:textColor="@color/whiteColor"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Followers"
                 android:textColor="@color/whiteColor"
                 android:textSize="18sp"
-                android:id="@+id/numberFollowers"/>
+                />
 
 
         </LinearLayout>

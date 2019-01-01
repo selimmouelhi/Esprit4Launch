@@ -29,5 +29,8 @@ public interface FriendsInterface {
     Call<Void> addFriend(@Path("id_user")String id_user,@Path("id_friend")String id_friend);
 
 
+    @GET("is_friend/{id1}/{id2}")
+    Call<Boolean> is_friend(@Path("id1") String followerId, @Path("id2") String followedId);
+
 
 }

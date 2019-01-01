@@ -11,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface UserInterface {
 
@@ -19,6 +20,10 @@ public interface UserInterface {
     @POST("check")
     Call<User> createFromSocialMedia(@Body User user);
 
-    @POST("insert")
-    Call<JsonObject> createFromEmail(@Body User user);
+    @GET("/{id}")
+    Call<User> getFriendsList(@Path("id") String id_user);
+
+
+
+
 }

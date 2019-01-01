@@ -40,6 +40,13 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
     private TextView nameUser;
     private GoogleSignInClient mGoogleSignInClient;
     private Button signout ;
+    TextView emailProf;
+    TextView phoneProfile;
+    TextView numberofFriends;
+    TextView numberofFollowers;
+    TextView numberofFavorites;
+
+
 
 
     private GoogleApiClient googleApiClient;
@@ -68,6 +75,9 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
         nameUser = view.findViewById(R.id.name_text);
         methodsignin = view.findViewById(R.id.method_text);
         signout = view.findViewById(R.id.signoutProf);
+        emailProf = view.findViewById(R.id.emailProfile);
+        phoneProfile = view.findViewById(R.id.phone_profile);
+
 
 
 
@@ -75,6 +85,8 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
         String name= activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getString(MainActivity.PREF_Name, null);
         String prenom = activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getString(MainActivity.PREF_prenom, null);
         final String method = activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getString(MainActivity.PREF_SIGNIN_METHOD, null);
+        String email =  activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getString(MainActivity.PREF_mail, null);
+        int phone =  activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getInt(MainActivity.PREF_phone, 0);
 
         nameUser.setText(prenom+" "+name);
         methodsignin.setText("Signed in with "+method);
@@ -85,6 +97,11 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
                 signout();
             }
         });
+
+        emailProf.setText(email);
+        phoneProfile.setText(Integer.toString(phone));
+
+
 
         return view ;
 

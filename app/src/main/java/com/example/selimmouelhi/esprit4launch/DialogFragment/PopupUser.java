@@ -46,14 +46,18 @@ public class PopupUser extends AppCompatDialogFragment {
                 dismiss();
             }
         });
+        System.out.println(user.toString()+" in dialog");
         btnviewProfile = view.findViewById(R.id.viewProfile);
         profileImage = view.findViewById(R.id.profile_img);
         nameProfile = view.findViewById(R.id.namePopUp);
-        friendsNumber = view.findViewById(R.id.numberFriends);
-        followersNumber = view.findViewById(R.id.numberFollowers);
-        favoritesNumber = view.findViewById(R.id.numberFavorites);
+        friendsNumber = view.findViewById(R.id.friendsnbr);
+        followersNumber = view.findViewById(R.id.followersnbr);
+
         System.out.println(user.getNom()+"in dialog");
         Picasso.with(getContext()).load(user.getImage()).into(profileImage);
+       followersNumber.setText(Integer.toString(user.getFollowers()));
+        friendsNumber.setText(Integer.toString(user.getFriends()));
+
         nameProfile.setText(user.getPrenom() + " " + user.getNom());
 
         btnviewProfile.setOnClickListener(new View.OnClickListener() {

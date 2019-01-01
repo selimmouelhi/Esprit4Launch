@@ -24,6 +24,68 @@ public class User {
     @Expose
     private String image ;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", mail='" + mail + '\'' +
+                ", phone=" + phone +
+                ", image='" + image + '\'' +
+                ", status='" + status + '\'' +
+                ", followers=" + followers +
+                ", following=" + following +
+                ", friends=" + friends +
+                '}';
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(int followers) {
+        this.followers = followers;
+    }
+
+    public int getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(int following) {
+        this.following = following;
+    }
+
+    public int getFriends() {
+        return friends;
+    }
+
+    public void setFriends(int friends) {
+        this.friends = friends;
+    }
+
+    @SerializedName("status")
+    @Expose
+
+    private String status ;
+    @SerializedName("followers")
+    @Expose
+    private int followers ;
+    @SerializedName("following")
+    @Expose
+    private int  following ;
+    @SerializedName("friends")
+    @Expose
+    private int  friends ;
+
     public String getImage() {
         return image;
     }
@@ -96,16 +158,5 @@ public class User {
 
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", mail='" + mail + '\'' +
-                ", phone=" + phone +
-                ", image='" + image + '\'' +
-                '}';
-    }
 }
 

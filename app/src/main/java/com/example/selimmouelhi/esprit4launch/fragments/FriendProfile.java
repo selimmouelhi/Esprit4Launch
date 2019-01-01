@@ -2,10 +2,14 @@ package com.example.selimmouelhi.esprit4launch.fragments;
 
 
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.v4.app.Fragment;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,10 +32,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * A simple {@link Fragment} subclass.
  */
 public class FriendProfile extends Fragment {
+    private boolean isopen=false ;
+    private ConstraintSet layout1,layout2;
+    private ConstraintLayout constraintLayout;
 
     TextView nameView;
     ImageView profile_picture;
-    Button friendship ;
+    ImageView friendship ;
+    Button followunfollow;
+    TextView addunadd;
     private static User user;
     private static String State;
     public FriendProfile() {
@@ -47,6 +56,34 @@ public class FriendProfile extends Fragment {
         nameView = view.findViewById(R.id.name_text);
         profile_picture = view.findViewById(R.id.profile_picture);
         friendship = view.findViewById(R.id.friendunfriend);
+        followunfollow = view.findViewById(R.id.followunfollow);
+        addunadd = view.findViewById(R.id.addunadd);
+        layout1 = new ConstraintSet();
+        layout2 = new ConstraintSet();
+        constraintLayout = view.findViewById(R.id.extended);
+        layout2.clone(getContext(),R.layout.fragment_friend_profile_extended);
+        layout1.clone(constraintLayout);
+
+        profile_picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isopen) {
+
+                    TransitionManager.beginDelayedTransition(constraintLayout);
+                    layout2.applyTo(constraintLayout);
+                    isopen = !isopen;
+                } else {
+
+                    TransitionManager.beginDelayedTransition(constraintLayout);
+                    layout1.applyTo(constraintLayout);
+                    isopen = !isopen;
+
+
+                }
+            }
+        });
+
+
 
         System.out.println(user.getNom()+"in friendprofile");
 
@@ -55,16 +92,16 @@ public class FriendProfile extends Fragment {
         System.out.println(this.State+"in helpme");
 
         if(this.State.equals("friends")){
-            friendship.setText("UNFRIEND");
+            addunadd.setText("UNFRIEND");
 
 
         }
         else {
-            friendship.setText("ADDFRIEND");
+           addunadd.setText("Addfriend");
 
         }
 
-        if(friendship.getText().equals("UNFRIEND")){
+        if(addunadd.getText().equals("UNFRIEND")){
 
             friendship.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -80,7 +117,7 @@ public class FriendProfile extends Fragment {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             System.out.println("done deleting");
-                            friendship.setText("ADDfriend");
+                            addunadd.setText("ADDfriend");
                             MyFriends myFriends = new MyFriends();
                             getFragmentManager().beginTransaction().replace(R.id.framelayout, myFriends).commit();
                         }
@@ -112,7 +149,7 @@ public class FriendProfile extends Fragment {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             System.out.println("done adding");
-                            friendship.setText("UNFRIEND");
+                            addunadd.setText("UNFRIEND");
                         }
 
                         @Override
