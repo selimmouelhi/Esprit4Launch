@@ -16,6 +16,14 @@
     <color name="startblue">#Df013A</color>
     <color name="endblue">#F05F5F</color>
 
+    <color name="graystart">#A4A4A4</color>
+    <color name="grayend">#BDBDBD</color>
+
+
+    <color name="bluestart">#2E64FE</color>
+    <color name="blueend">#0040FF</color>
+
+
 
 
 
