@@ -4,76 +4,52 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:orientation="horizontal"
+        android:weightSum="10">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
+
             android:layout_width="0dp"
             android:layout_height="50dp"
+            android:layout_weight="3"
+            android:gravity="start"
 
-            android:gravity="start">
+            android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_marginLeft="10dp"
-
                 android:layout_width="50dp"
+
                 android:layout_height="50dp"
-
-                android:src="@drawable/login"
-                />
-
+                android:layout_marginLeft="10dp"
+                android:id="@+id/picture"
+                android:src="@drawable/login" />
 
 
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:gravity="start">
+            android:layout_weight="7"
+            android:gravity="start"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/favoritesnbr"
+                android:id="@+id/nameprenom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Selim Mouelhi"
                 android:textColor="@color/blackcolor"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"
-                />
-
+                android:textStyle="bold" />
 
 
         </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-
-            android:gravity="center">
-
-            <Button
-                android:id="@+id/followersnbr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Unfollow"
-                android:background="@drawable/signoutstyle"
-                android:textColor="@color/blackcolor"
-                android:textSize="18sp"
-                android:textAllCaps="false"
-                />
 
 
-
-        </LinearLayout>
 
     </LinearLayout>
 

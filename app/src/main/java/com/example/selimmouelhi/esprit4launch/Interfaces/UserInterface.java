@@ -24,6 +24,9 @@ public interface UserInterface {
     Call<User> getFriendsList(@Path("id") String id_user);
 
 
+    @GET("{id}")
+    Call<User> getUserById(@Path("id") String id_user);
+
 
 
 }

@@ -2,21 +2,28 @@ package com.example.selimmouelhi.esprit4launch.fragments;
 
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.selimmouelhi.esprit4launch.Interfaces.FollowerInterface;
+import com.example.selimmouelhi.esprit4launch.Interfaces.UserInterface;
 import com.example.selimmouelhi.esprit4launch.R;
 import com.example.selimmouelhi.esprit4launch.activities.HomeActivity;
 import com.example.selimmouelhi.esprit4launch.activities.MainActivity;
+import com.example.selimmouelhi.esprit4launch.entities.User;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.HttpMethod;
@@ -30,6 +37,14 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,6 +60,8 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
     TextView numberofFriends;
     TextView numberofFollowers;
     TextView numberofFavorites;
+    LinearLayout followers;
+
 
 
 
@@ -80,6 +97,47 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
         numberofFavorites = view.findViewById(R.id.numberFavorites);
         numberofFriends = view.findViewById(R.id.numberFriends);
         numberofFollowers = view.findViewById(R.id.numberFollowers);
+        followers = view.findViewById(R.id.followerslinear);
+
+        String id = activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getString(MainActivity.PREF_USER_ID, null);
+        System.out.println(id+"in proffrag");
+
+        followers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProgressDialog progressDialog = ProgressDialog.show(getContext(),"blabla","blala");
+
+                Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                UserInterface userInterface = retrofit.create(UserInterface.class);
+                Call<User> call = userInterface.getUserById(id);
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+
+                        progressDialog.dismiss();
+
+                        System.out.println(response.body().getNom()+"in profile frag");
+                        followerfollowingfriendFrag followerfollowingfriendFrag = new followerfollowingfriendFrag();
+                        followerfollowingfriendFrag.setUser(response.body());
+                        FragmentManager manager = getActivity().getSupportFragmentManager();
+
+                        manager.beginTransaction().replace(R.id.framelayout,followerfollowingfriendFrag).commit();
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Toast.makeText(getContext(), "failure in getting user by id", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+
+
+            }
+
+        });
 
 
 
