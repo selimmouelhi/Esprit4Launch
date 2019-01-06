@@ -8,6 +8,10 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
 
 
     <uses-feature android:name="android.hardware.location.gps"/>
@@ -55,6 +59,13 @@
         <activity android:name=".activities.MapActivity" />
         <activity android:name=".activities.RestDatailsActivity" />
         <activity android:name=".activities.RestReviewsActivity" />
+
+        <service
+            android:name=".Services.FireBaseNotificationService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

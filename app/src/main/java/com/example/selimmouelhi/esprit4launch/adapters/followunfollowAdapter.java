@@ -2,7 +2,10 @@ package com.example.selimmouelhi.esprit4launch.adapters;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v4.app.Fragment;
 
 import com.example.selimmouelhi.esprit4launch.DialogFragment.PopupUser;
 import com.example.selimmouelhi.esprit4launch.Interfaces.FollowerInterface;
@@ -32,19 +36,21 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import com.example.selimmouelhi.esprit4launch.fragments.followerfollowingfriendFrag;
 
 public class followunfollowAdapter extends RecyclerView.Adapter<followunfollowAdapter.ViewHolder> {
     public  User user;
     private static final String TAG= "follwersAdapter";
     private static ArrayList<User> followers = new ArrayList<User>();
     private Activity mcontext ;
+    followerCallBack followerCallBack;
 
 
-    public followunfollowAdapter( Activity mcontext,ArrayList<User> followers) {
+    public followunfollowAdapter( Activity mcontext,ArrayList<User> followers,followerCallBack callBack) {
         this.followers = followers;
         this.mcontext = mcontext;
-        System.out.println(followers.get(0).getNom()+"in constructor");
-        System.out.println(followers.size()+"in constructor");
+        this.followerCallBack = callBack;
+
 
 
     }
@@ -133,6 +139,19 @@ public class followunfollowAdapter extends RecyclerView.Adapter<followunfollowAd
                                         viewHolder.follow.setVisibility(View.INVISIBLE);
                                         Toast.makeText( mcontext, "done ", Toast.LENGTH_SHORT).show();
 
+                                        System.out.println(getUser().getNom() + "in beofre followerback");
+                                        followerCallBack.onFollowingUser(getUser());
+
+
+                                        /*followerfollowingfriendFrag.setUser(user);
+                                        Bundle b = new Bundle();
+                                        b.putString("state","follow");
+                                        followerfollowingfriendFrag.setArguments(b);
+                                        ((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, followerfollowingfriendFrag).commit();*/
+                                        notifyDataSetChanged();
+
+
+
                                     }
 
                                     @Override
@@ -148,6 +167,9 @@ public class followunfollowAdapter extends RecyclerView.Adapter<followunfollowAd
                         })    ;
 
 
+                AlertDialog alert = alertbuilder.create();
+                alert.setTitle("Alert");
+                alert.show();
 
 
             }
@@ -187,6 +209,21 @@ public class followunfollowAdapter extends RecyclerView.Adapter<followunfollowAd
                                         viewHolder.following.setVisibility(View.INVISIBLE);
                                         viewHolder.follow.setVisibility(View.VISIBLE);
                                         Toast.makeText( mcontext, "done unfollowing ", Toast.LENGTH_SHORT).show();
+                                        notifyItemChanged(viewHolder.getAdapterPosition());
+                                        notifyDataSetChanged();
+                                        notifyItemRangeChanged(viewHolder.getAdapterPosition(),followers.size());
+
+                                        viewHolder.itemView.setVisibility(View.GONE);
+
+                                       /*  Bundle b = new Bundle();
+                                        b.putString("state","following");
+                                        FollowerfollowingfriendFrag.setArguments(b);
+                                        ((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, FollowerfollowingfriendFrag).commit();
+
+                                            */
+                                        System.out.println(getUser().getNom() + "in beofre followerback");
+
+                                        followerCallBack.onunFollowingUser(getUser());
 
                                     }
 
@@ -203,7 +240,9 @@ public class followunfollowAdapter extends RecyclerView.Adapter<followunfollowAd
                         })    ;
 
 
-
+                AlertDialog alert = alertbuilder.create();
+                alert.setTitle("Alert");
+                alert.show();
 
             }
         });
@@ -271,8 +310,24 @@ public class followunfollowAdapter extends RecyclerView.Adapter<followunfollowAd
 
         }
     }
+
     public void setUser(User user){
         this.user= user;
     }
+public User getUser(){
+        return this.user;
+}
+public void setfollowers(ArrayList<User> followers){
+        this.followers = followers;
+
+}
+
+    public interface followerCallBack {
+        void onFollowingUser(User user);
+        void onunFollowingUser(User user);
+
+
+    }
+
 }
 

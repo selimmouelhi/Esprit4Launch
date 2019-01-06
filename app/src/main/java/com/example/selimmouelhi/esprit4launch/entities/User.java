@@ -24,6 +24,36 @@ public class User {
     @Expose
     private String image ;
 
+    @SerializedName("uuid")
+    private String mUuid;
+    @SerializedName("token")
+    private String mToken;
+    private String type = "and";
+
+    public String getmUuid() {
+        return mUuid;
+    }
+
+    public void setmUuid(String mUuid) {
+        this.mUuid = mUuid;
+    }
+
+    public String getmToken() {
+        return mToken;
+    }
+
+    public void setmToken(String mToken) {
+        this.mToken = mToken;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getStatus() {
         return status;
     }

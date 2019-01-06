@@ -7,6 +7,7 @@ import com.example.selimmouelhi.esprit4launch.Interfaces.UserInterface;
 import com.example.selimmouelhi.esprit4launch.entities.User;
 import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -86,10 +87,42 @@ public class UserService {
         });
     }
 
+    public void getUserById(String id, final GetUserByIdCallBack callBack) {
+       retrofit2.Call<User> call = userInterface.getUserById(id);
+       call.enqueue(new Callback<User>() {
+           @Override
+           public void onResponse(retrofit2.Call<User> call, Response<User> response) {
+               if (!response.isSuccessful()) {
+                   try {
+                       Log.d(TAG, "getUserById: Error " + response.errorBody().string());
+                   } catch (IOException e) {
+                       e.printStackTrace();
+                   }
+                   callBack.onCompletion(null);
+                   return;
+               }
+               Log.d(TAG, "getUserById: body: " + response.body());
+               callBack.onCompletion(response.body());
+           }
+
+           @Override
+           public void onFailure(retrofit2.Call<User> call, Throwable t) {
+               Log.e(TAG, "onFailure: ", t);
+               callBack.onCompletion(null);
+
+           }
+       });
+
+    }
+
 
     public interface CreateFromSocialMediaCallBack{
         void onCompletion(User user);
     }
 
+
+    public interface GetUserByIdCallBack {
+        void onCompletion(User user);
+    }
 
 }

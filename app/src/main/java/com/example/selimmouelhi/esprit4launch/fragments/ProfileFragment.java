@@ -3,6 +3,7 @@ package com.example.selimmouelhi.esprit4launch.fragments;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -36,7 +37,10 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -176,36 +180,59 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
 
     private void signout(){
 
-        //signoutGoogle
-        if (googleApiClient.isConnected()) {
-            Auth.GoogleSignInApi.signOut(googleApiClient);
-            googleApiClient.disconnect();
-            googleApiClient.connect();
-            goTohome();
-        }
+        /*String uuid = getActivity().getSharedPreferences(getString(R.string.prefs_name), Context.MODE_PRIVATE)
+                .getString(getString(R.string.prefs_uuid), null);
+        JsonObject body = new JsonObject();
+        body.addProperty("uuid", uuid);
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                .build();
+        UserInterface userInterface = retrofit.create(UserInterface.class);
+        Call<Void> logoutcall = userInterface.logout(body);
+        logoutcall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {*/
+
+
+                //signoutGoogle
+                if (googleApiClient.isConnected()) {
+                    Auth.GoogleSignInApi.signOut(googleApiClient);
+                    googleApiClient.disconnect();
+                    googleApiClient.connect();
+                    goTohome();
+                }
 
 
 
-        //facebooksignout
-        AccessToken token = AccessToken.getCurrentAccessToken();
+                //facebooksignout
+                AccessToken token = AccessToken.getCurrentAccessToken();
 
-        if (AccessToken.getCurrentAccessToken() == null) {
-            return; // already logged out
-        }
+                if (AccessToken.getCurrentAccessToken() == null) {
+                    return; // already logged out
+                }
 
-        else {
-            SharedPreferences sharedPreferences = getContext()  .getSharedPreferences(MainActivity.PREFS_NAME,getActivity().MODE_PRIVATE);
-            sharedPreferences.edit().clear().commit();
-            goTohome();
-            LoginManager.getInstance().logOut();
-        }
-
-
+                else {
+                    SharedPreferences sharedPreferences = getContext()  .getSharedPreferences(MainActivity.PREFS_NAME,getActivity().MODE_PRIVATE);
+                    sharedPreferences.edit().clear().commit();
+                    goTohome();
+                    LoginManager.getInstance().logOut();
+                }
 
 
+            }
+/*
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });*/
 
 
-    }
+
+
+
+
+    
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {

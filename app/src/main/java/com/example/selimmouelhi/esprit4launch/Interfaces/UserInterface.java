@@ -28,5 +28,7 @@ public interface UserInterface {
     Call<User> getUserById(@Path("id") String id_user);
 
 
+    @POST("logout")
+    Call<Void> logout(@Body JsonObject body);
 
 }

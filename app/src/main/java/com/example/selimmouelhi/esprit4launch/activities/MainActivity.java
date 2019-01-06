@@ -39,7 +39,10 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -51,6 +54,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.Signature;
 import java.util.Arrays;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener {
     private static final int RC_SIGN_IN =9001;
@@ -304,34 +308,57 @@ private void signInFacebook(){
     }
 
 
-    private void loginOrCreateFromSocialMedia(final User user, final String signInMethod) {
-        UserService.getInstance().createFromSocialMedia(user, new UserService.CreateFromSocialMediaCallBack() {
-            @Override
-            public void onCompletion(User user) {
+    private void loginOrCreateFromSocialMedia(final User user,  String signInMethod) {
 
-                if(user == null){
-                    System.out.println("error in completion");
-                    return;
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String token = instanceIdResult.getToken();
+                Log.d(TAG, "onSuccess: " + token);
+                String uuid = getSharedPreferences(getString(R.string.prefs_name), Context.MODE_PRIVATE)
+                        .getString(getString(R.string.prefs_uuid), null);
+                Log.i(TAG, "onSuccess: uuid = " + uuid);
+                if (uuid == null) {
+                    uuid = UUID.randomUUID().toString();
+                    getSharedPreferences(getString(R.string.prefs_name), Context.MODE_PRIVATE)
+                            .edit().putString(getString(R.string.prefs_uuid), uuid).apply();
                 }
-                //add to sharef prefernces profile data
-                System.out.println("user is not null");
-                System.out.println(user.toString() + " in main");
-                    getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-                        .edit()
-                        .putString(PREF_SIGNIN_METHOD, signInMethod)
-                        .putString(PREF_USER_ID, user.getId())
-                        .putString(PREF_IMAGE_URL, user.getImage())
-                        .putString(PREF_Name, user.getNom())
-                            .putString(PREF_prenom, user.getPrenom())
-                            .putString(PREF_mail,user.getMail())
-                            .putInt(PREF_phone,user.getPhone())
-                            .putInt(PREF_followers, user.getFollowers())
-                            .putInt(PREF_favorites,user.getFavorites())
-                            .putInt(PREF_friends,user.getFriends())
-                        .apply();
-                goToHome();
+                user.setmUuid(uuid);
+                user.setmToken(token);
+                user.setType("android");
+                UserService.getInstance().createFromSocialMedia(user, new   UserService.CreateFromSocialMediaCallBack() {
+                    @Override
+                    public void onCompletion(User user) {
+
+                        if(user == null){
+                            System.out.println("error in completion");
+                            return;
+                        }
+                        //add to sharef prefernces profile data
+                        System.out.println("user is not null");
+                        System.out.println(user.toString() + " in main");
+                        getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+                                .edit()
+                                .putString(PREF_SIGNIN_METHOD, signInMethod)
+                                .putString(PREF_USER_ID, user.getId())
+                                .putString(PREF_IMAGE_URL, user.getImage())
+                                .putString(PREF_Name, user.getNom())
+                                .putString(PREF_prenom, user.getPrenom())
+                                .putString(PREF_mail,user.getMail())
+                                .putInt(PREF_phone,user.getPhone())
+                                .putInt(PREF_followers, user.getFollowers())
+                                .putInt(PREF_favorites,user.getFavorites())
+                                .putInt(PREF_friends,user.getFriends())
+                                .apply();
+                        goToHome();
+                    }
+                });
+
+
             }
         });
+
     }
 
     private void goToHome() {

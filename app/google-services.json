@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "362625310410",
+    "firebase_url": "https://esprit4launch-1541532517720.firebaseio.com",
+    "project_id": "esprit4launch-1541532517720",
+    "storage_bucket": "esprit4launch-1541532517720.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362625310410:android:ea9b1689ffd6ab05",
+        "android_client_info": {
+          "package_name": "com.example.selimmouelhi.esprit4launch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362625310410-u6pvd6p8tgbol3q20hgqf4p96qnkc6ch.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.selimmouelhi.esprit4launch",
+            "certificate_hash": "d659c681f8a48d8de61350712a88dacdbf3650fe"
+          }
+        },
+        {
+          "client_id": "362625310410-s0h62cpla5d1ud122hveppfc4n12r2uo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIlI3qHfeUPCD46KYkdbPjwvNEwpeYapI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362625310410-s0h62cpla5d1ud122hveppfc4n12r2uo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "362625310410-srrimb65kn9nsa1hjn8ud4b033s1jp82.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "tn.esprit.4launch"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
