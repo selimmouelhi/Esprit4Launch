@@ -140,7 +140,7 @@ public class followunfollowAdapter extends RecyclerView.Adapter<followunfollowAd
                                         Toast.makeText( mcontext, "done ", Toast.LENGTH_SHORT).show();
 
                                         System.out.println(getUser().getNom() + "in beofre followerback");
-                                        followerCallBack.onFollowingUser(getUser());
+                                        followerCallBack.onFollowingUser(1,user.getId());
 
 
                                         /*followerfollowingfriendFrag.setUser(user);
@@ -148,7 +148,7 @@ public class followunfollowAdapter extends RecyclerView.Adapter<followunfollowAd
                                         b.putString("state","follow");
                                         followerfollowingfriendFrag.setArguments(b);
                                         ((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, followerfollowingfriendFrag).commit();*/
-                                        notifyDataSetChanged();
+                                       // notifyDataSetChanged();
 
 
 
@@ -213,7 +213,7 @@ public class followunfollowAdapter extends RecyclerView.Adapter<followunfollowAd
                                         notifyDataSetChanged();
                                         notifyItemRangeChanged(viewHolder.getAdapterPosition(),followers.size());
 
-                                        viewHolder.itemView.setVisibility(View.GONE);
+                                       // viewHolder.itemView.setVisibility(View.GONE);
 
                                        /*  Bundle b = new Bundle();
                                         b.putString("state","following");
@@ -223,7 +223,7 @@ public class followunfollowAdapter extends RecyclerView.Adapter<followunfollowAd
                                             */
                                         System.out.println(getUser().getNom() + "in beofre followerback");
 
-                                        followerCallBack.onunFollowingUser(getUser());
+                                        followerCallBack.onunFollowingUser(-1,user.getId());
 
                                     }
 
@@ -323,8 +323,8 @@ public void setfollowers(ArrayList<User> followers){
 }
 
     public interface followerCallBack {
-        void onFollowingUser(User user);
-        void onunFollowingUser(User user);
+        void onFollowingUser(int nbr ,String id);
+        void onunFollowingUser(int  nbr,String id);
 
 
     }

@@ -240,22 +240,57 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
 
             <ImageView
-                android:id="@+id/friendunfriend"
+                android:id="@+id/friend"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:src="@drawable/ic_person_add_black_24dp" />
+                <ImageView
+                    android:id="@+id/unfriend"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_delete_black_24dp" />
+
+
 
             <TextView
-                android:id="@+id/addunadd"
+
+                android:id="@+id/add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="60dp"
                 android:layout_marginTop="8dp"
                 android:text="Add to friends"
                 android:textSize="15sp"
                 android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/unadd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginTop="8dp"
+                    android:text="delete friend"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/request"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginTop="8dp"
+                    android:text="friend request sent"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -263,7 +298,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/followunfollow"
+        android:id="@+id/follow"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_gravity="center"
@@ -272,6 +307,23 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/signoutstyle"
         android:text="Follow"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout3" />
+
+
+    <Button
+        android:id="@+id/unfollow"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="216dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/signoutstyle"
+        android:text="Unfollow"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.485"

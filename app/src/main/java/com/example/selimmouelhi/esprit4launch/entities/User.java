@@ -30,6 +30,18 @@ public class User {
     private String mToken;
     private String type = "and";
 
+
+    public String getCouverture_url() {
+        return couverture_url;
+    }
+
+    public void setCouverture_url(String couverture_url) {
+        this.couverture_url = couverture_url;
+    }
+
+    @SerializedName("couverture_url")
+    private String couverture_url;
+
     public String getmUuid() {
         return mUuid;
     }

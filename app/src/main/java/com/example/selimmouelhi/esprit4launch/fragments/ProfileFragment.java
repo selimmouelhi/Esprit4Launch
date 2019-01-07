@@ -144,8 +144,6 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
         });
 
 
-
-
         String image_url = activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getString(MainActivity.PREF_IMAGE_URL, null);
         String name= activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getString(MainActivity.PREF_Name, null);
         String prenom = activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getString(MainActivity.PREF_prenom, null);
@@ -156,12 +154,49 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
         int favorites =  activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getInt(MainActivity.PREF_favorites, 0);
         int followers =  activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getInt(MainActivity.PREF_followers, 0);
 
-        numberofFollowers.setText(Integer.toString(followers));
-        numberofFriends.setText(Integer.toString(friends));
-        numberofFavorites.setText(Integer.toString(favorites));
-        nameUser.setText(prenom+" "+name);
-        methodsignin.setText("Signed in with "+method);
-        Picasso.with(getContext()).load(image_url).into(userImage);
+
+        //get current user
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                .build();
+        UserInterface userInterface = retrofit.create(UserInterface.class);
+        Call<User> call = userInterface.getUserById(id);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> user, Response<User> response) {
+
+
+
+
+                emailProf.setText(response.body().getMail());
+                phoneProfile.setText(Integer.toString(response.body().getPhone()));
+
+                numberofFollowers.setText(Integer.toString(response.body().getFollowers()));
+                numberofFriends.setText(Integer.toString(response.body().getFriends()));
+                numberofFavorites.setText(Integer.toString(response.body().getFavorites()));
+                nameUser.setText(response.body().getPrenom()+" "+response.body().getNom());
+                methodsignin.setText("Signed in with "+method);
+                Picasso.with(getContext()).load(response.body().getImage()).into(userImage);
+
+
+
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(getContext(), "failure in getting user by id", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+
+
+
+
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,8 +204,6 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
             }
         });
 
-        emailProf.setText(email);
-        phoneProfile.setText(Integer.toString(phone));
 
 
 
@@ -178,9 +211,9 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
 
     }
 
-    private void signout(){
+    private void signout() {
 
-        /*String uuid = getActivity().getSharedPreferences(getString(R.string.prefs_name), Context.MODE_PRIVATE)
+        String uuid = getActivity().getSharedPreferences(getString(R.string.prefs_name), Context.MODE_PRIVATE)
                 .getString(getString(R.string.prefs_uuid), null);
         JsonObject body = new JsonObject();
         body.addProperty("uuid", uuid);
@@ -191,7 +224,7 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
         Call<Void> logoutcall = userInterface.logout(body);
         logoutcall.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {*/
+            public void onResponse(Call<Void> call, Response<Void> response) {
 
 
                 //signoutGoogle
@@ -203,16 +236,13 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
                 }
 
 
-
                 //facebooksignout
                 AccessToken token = AccessToken.getCurrentAccessToken();
 
                 if (AccessToken.getCurrentAccessToken() == null) {
                     return; // already logged out
-                }
-
-                else {
-                    SharedPreferences sharedPreferences = getContext()  .getSharedPreferences(MainActivity.PREFS_NAME,getActivity().MODE_PRIVATE);
+                } else {
+                    SharedPreferences sharedPreferences = getContext().getSharedPreferences(MainActivity.PREFS_NAME, getActivity().MODE_PRIVATE);
                     sharedPreferences.edit().clear().commit();
                     goTohome();
                     LoginManager.getInstance().logOut();
@@ -220,19 +250,20 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
 
 
             }
-/*
+
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
 
             }
-        });*/
+        });
+    }
 
 
 
 
 
 
-    
+
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {

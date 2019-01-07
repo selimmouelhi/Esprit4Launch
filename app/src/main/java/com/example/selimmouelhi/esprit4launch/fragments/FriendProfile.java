@@ -13,8 +13,11 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.selimmouelhi.esprit4launch.Interfaces.FollowerInterface;
 import com.example.selimmouelhi.esprit4launch.Interfaces.FriendsInterface;
+import com.example.selimmouelhi.esprit4launch.Interfaces.UserInterface;
 import com.example.selimmouelhi.esprit4launch.R;
 import com.example.selimmouelhi.esprit4launch.activities.MainActivity;
 import com.example.selimmouelhi.esprit4launch.entities.User;
@@ -38,14 +41,18 @@ public class FriendProfile extends Fragment {
 
     TextView nameView;
     ImageView profile_picture;
-    ImageView friendship ;
-    Button followunfollow;
-    TextView addunadd;
+    ImageView unfriend ;
+    Button follow;
+    Button unfollow;
+    TextView add;
+    TextView unadd;
     TextView email ;
     TextView phone ;
     TextView followingsnbr;
     TextView friendsnbr;
     TextView followersnbr;
+    ImageView friend;
+    TextView requestfriend ;
     private static User user;
     private static String State;
     public FriendProfile() {
@@ -60,20 +67,161 @@ public class FriendProfile extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_friend_profile, container, false);
         nameView = view.findViewById(R.id.name_text);
         profile_picture = view.findViewById(R.id.profile_picture);
-        friendship = view.findViewById(R.id.friendunfriend);
-        followunfollow = view.findViewById(R.id.followunfollow);
-        addunadd = view.findViewById(R.id.addunadd);
+        unfriend = view.findViewById(R.id.unfriend);
+        friend = view.findViewById(R.id.friend);
+        follow = view.findViewById(R.id.follow);
+        unfollow = view.findViewById(R.id.unfollow);
+        add = view.findViewById(R.id.add);
+        unadd = view.findViewById(R.id.unadd);
         email = view.findViewById(R.id.emailProfile);
         phone = view.findViewById(R.id.phone_profile);
         followingsnbr = view.findViewById(R.id.numberfollwings);
         friendsnbr= view.findViewById(R.id.numberFriends);
         followersnbr = view.findViewById(R.id.numberFollowers);
+        requestfriend = view.findViewById(R.id.request);
 
-        followingsnbr.setText(Integer.toString(user.getFollowing()));
-        followersnbr.setText(Integer.toString(user.getFollowers()));
-        friendsnbr.setText(Integer.toString(user.getFriends()));
-        email.setText(user.getMail());
-        phone.setText(Integer.toString(user.getPhone()));
+        String id = getActivity().getSharedPreferences(MainActivity.PREFS_NAME, getActivity().MODE_PRIVATE).getString(MainActivity.PREF_USER_ID, null);
+
+
+
+        //set data
+
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                .build();
+        UserInterface userInterface = retrofit.create(UserInterface.class);
+        Call<User> call = userInterface.getUserById(user.getId());
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                User u = response.body();
+
+                followingsnbr.setText(Integer.toString(response.body().getFollowing()));
+                followersnbr.setText(Integer.toString(response.body().getFollowers()));
+                friendsnbr.setText(Integer.toString(response.body().getFriends()));
+                email.setText(response.body().getMail());
+                phone.setText(Integer.toString(response.body().getPhone()));
+
+                nameView.setText(response.body().getNom()+" "+response.body().getPrenom());
+                Picasso.with(getContext()).load(response.body().getImage()).into(profile_picture);
+
+
+
+                //get current user
+                Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                UserInterface userInterface = retrofit.create(UserInterface.class);
+                Call<User> currentuser = userInterface.getUserById(id);
+                    currentuser.enqueue(new Callback<User>() {
+                        @Override
+                        public void onResponse(Call<User> call, Response<User> response) {
+                            //test is following or not
+
+                            Retrofit retrofit = new Retrofit.Builder().baseUrl(FollowerInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                                    .build();
+                            FollowerInterface followerInterface = retrofit.create(FollowerInterface.class);
+
+                            Retrofit retrofitf = new Retrofit.Builder().baseUrl(FriendsInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                                    .build();
+
+                            FriendsInterface friendsInterface = retrofitf.create(FriendsInterface.class);
+
+
+
+                            Call<Boolean> followingornot = followerInterface.isFollowing(response.body().getId(),u.getId());
+                            followingornot.enqueue(new Callback<Boolean>() {
+                                @Override
+                                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+
+                                    if (response.body() == true ){
+                                        follow.setVisibility(View.INVISIBLE);
+                                        unfollow.setVisibility(View.VISIBLE);
+
+
+
+
+                                    }
+                                    else{
+
+                                        follow.setVisibility(View.VISIBLE);
+                                        unfollow.setVisibility(View.INVISIBLE);
+
+
+
+                                    }
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<Boolean> call, Throwable t) {
+
+                                }
+                            });
+
+                            //test friends or not
+
+
+                            Call<Boolean> friendsornot = friendsInterface.is_friend(response.body().getId(),u.getId());
+                            friendsornot.enqueue(new Callback<Boolean>() {
+                                @Override
+                                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+
+                                    if (response.body() == true ){
+                                        friend.setVisibility(View.INVISIBLE);
+                                        unfriend.setVisibility(View.VISIBLE);
+                                        add.setVisibility(View.INVISIBLE);
+                                        requestfriend.setVisibility(View.INVISIBLE);
+                                        unadd.setVisibility(View.VISIBLE);
+
+
+
+
+                                    }
+                                    else{
+                                        friend.setVisibility(View.VISIBLE);
+                                        unfriend.setVisibility(View.INVISIBLE);
+                                        unadd.setVisibility(View.VISIBLE);
+                                        add.setVisibility(View.INVISIBLE);
+                                        requestfriend.setVisibility(View.INVISIBLE);
+
+
+
+
+                                    }
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<Boolean> call, Throwable t) {
+
+                                }
+                            });
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<User> call, Throwable t) {
+
+                        }
+                    });
+
+
+
+
+
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(getContext(), "failure in getting user by id", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
 
 
 
@@ -106,85 +254,353 @@ public class FriendProfile extends Fragment {
 
 
 
-        System.out.println(user.getNom()+"in friendprofile");
+     //logic follow
 
-        nameView.setText(user.getNom()+" "+user.getPrenom());
-        Picasso.with(getContext()).load(user.getImage()).into(profile_picture);
-        System.out.println(this.State+"in helpme");
+        follow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        if(this.State.equals("friends")){
-            addunadd.setText("UNFRIEND");
-
-
-        }
-        else {
-           addunadd.setText("Addfriend");
-
-        }
-
-        if(addunadd.getText().equals("UNFRIEND")){
-
-            friendship.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Retrofit retrofit = new Retrofit.Builder().baseUrl(FriendsInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
-                            .build();
-                    String user_id = getActivity().getSharedPreferences(MainActivity.PREFS_NAME, getActivity().MODE_PRIVATE).getString(MainActivity.PREF_USER_ID, null);
-                    System.out.println(user_id+"user id in friends");
-                    System.out.println(user.getId()+"friend id in friends");
-                    FriendsInterface friendsInterface = retrofit.create(FriendsInterface.class);
-                    Call<Void> call = friendsInterface.deleteFriend(user_id,user.getId());
-                    call.enqueue(new Callback<Void>() {
-                        @Override
-                        public void onResponse(Call<Void> call, Response<Void> response) {
-                            System.out.println("done deleting");
-                            addunadd.setText("ADDfriend");
-                            MyFriends myFriends = new MyFriends();
-                            getFragmentManager().beginTransaction().replace(R.id.framelayout, myFriends).commit();
-                        }
-
-                        @Override
-                        public void onFailure(Call<Void> call, Throwable t) {
-
-                        }
-                    });
-
-                }
-            });
+                Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                UserInterface userInterface = retrofit.create(UserInterface.class);
+                Call<User> call = userInterface.getUserById(user.getId());
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        User u = response.body();
 
 
 
-        }
-        else {
-            friendship.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Retrofit retrofit = new Retrofit.Builder().baseUrl(FriendsInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
-                            .build();
-                    String user_id = getActivity().getSharedPreferences(MainActivity.PREFS_NAME, getActivity().MODE_PRIVATE).getString(MainActivity.PREF_USER_ID, null);
-                    System.out.println(user_id+"user id in friends");
-                    System.out.println(user.getId()+"friend id in friends");
-                    FriendsInterface friendsInterface = retrofit.create(FriendsInterface.class);
-                    Call<Void> call = friendsInterface.addFriend(user_id,user.getId());
-                    call.enqueue(new Callback<Void>() {
-                        @Override
-                        public void onResponse(Call<Void> call, Response<Void> response) {
-                            System.out.println("done adding");
-                            addunadd.setText("UNFRIEND");
-                        }
 
-                        @Override
-                        public void onFailure(Call<Void> call, Throwable t) {
+                        //get current user
+                        Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                                .build();
+                        UserInterface userInterface = retrofit.create(UserInterface.class);
+                        Call<User> currentuser = userInterface.getUserById(id);
+                        currentuser.enqueue(new Callback<User>() {
+                            @Override
+                            public void onResponse(Call<User> call, Response<User> response) {
+                                //test is following or not
 
-                        }
-                    });
+                                Retrofit retrofit = new Retrofit.Builder().baseUrl(FollowerInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                                        .build();
+                                FollowerInterface followerInterface = retrofit.create(FollowerInterface.class);
+                                Call<Void> followcall = followerInterface.follow(response.body().getId(),u.getId());
+                                followcall.enqueue(new Callback<Void>() {
+                                    @Override
+                                    public void onResponse(Call<Void> call, Response<Void> response) {
 
-                }
-            });
+                                        follow.setVisibility(View.INVISIBLE);
+                                        unfollow.setVisibility(View.VISIBLE);
 
-        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Void> call, Throwable t) {
+
+                                    }
+                                });
 
 
+
+
+
+
+
+
+
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<User> call, Throwable t) {
+
+                            }
+                        });
+
+
+
+
+
+
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Toast.makeText(getContext(), "failure in getting user by id", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+
+            }
+        });
+     //logic unfollow
+
+        unfollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                UserInterface userInterface = retrofit.create(UserInterface.class);
+                Call<User> call = userInterface.getUserById(user.getId());
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        User u = response.body();
+
+
+
+
+                        //get current user
+                        Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                                .build();
+                        UserInterface userInterface = retrofit.create(UserInterface.class);
+                        Call<User> currentuser = userInterface.getUserById(id);
+                        currentuser.enqueue(new Callback<User>() {
+                            @Override
+                            public void onResponse(Call<User> call, Response<User> response) {
+                                //test is following or not
+
+                                Retrofit retrofit = new Retrofit.Builder().baseUrl(FollowerInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                                        .build();
+                                FollowerInterface followerInterface = retrofit.create(FollowerInterface.class);
+                                Call<Void> followcall = followerInterface.unfollow(response.body().getId(),u.getId());
+                                followcall.enqueue(new Callback<Void>() {
+                                    @Override
+                                    public void onResponse(Call<Void> call, Response<Void> response) {
+
+                                        follow.setVisibility(View.INVISIBLE);
+                                        unfollow.setVisibility(View.VISIBLE);
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Void> call, Throwable t) {
+
+                                    }
+                                });
+
+
+
+
+
+
+
+
+
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<User> call, Throwable t) {
+
+                            }
+                        });
+
+
+
+
+
+
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Toast.makeText(getContext(), "failure in getting user by id", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+            }
+        });
+     //logic friend
+
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                UserInterface userInterface = retrofit.create(UserInterface.class);
+                Call<User> call = userInterface.getUserById(user.getId());
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        User u = response.body();
+
+
+
+
+                        //get current user
+                        Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                                .build();
+                        UserInterface userInterface = retrofit.create(UserInterface.class);
+                        Call<User> currentuser = userInterface.getUserById(id);
+                        currentuser.enqueue(new Callback<User>() {
+                            @Override
+                            public void onResponse(Call<User> call, Response<User> response) {
+                                //test is following or not
+
+                                Retrofit retrofit = new Retrofit.Builder().baseUrl(FriendsInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                                        .build();
+                                FriendsInterface friendsInterface = retrofit.create(FriendsInterface.class);
+                                Call<Void> addcallfriend = friendsInterface.requestFriend(response.body().getId(),u.getId());
+                                addcallfriend.enqueue(new Callback<Void>() {
+                                    @Override
+                                    public void onResponse(Call<Void> call, Response<Void> response) {
+
+                                        friend.setVisibility(View.INVISIBLE);
+                                        unfriend.setVisibility(View.INVISIBLE);
+                                        requestfriend.setVisibility(View.VISIBLE);
+                                        add.setVisibility(View.INVISIBLE);
+                                        unadd.setVisibility(View.INVISIBLE);
+
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Void> call, Throwable t) {
+
+                                    }
+                                });
+
+
+
+
+
+
+
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<User> call, Throwable t) {
+
+                            }
+                        });
+
+
+
+
+
+
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Toast.makeText(getContext(), "failure in getting user by id", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+            }
+        });
+     //logic unfriend
+
+
+        unadd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                UserInterface userInterface = retrofit.create(UserInterface.class);
+                Call<User> call = userInterface.getUserById(user.getId());
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        User u = response.body();
+
+
+
+
+                        //get current user
+                        Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                                .build();
+                        UserInterface userInterface = retrofit.create(UserInterface.class);
+                        Call<User> currentuser = userInterface.getUserById(id);
+                        currentuser.enqueue(new Callback<User>() {
+                            @Override
+                            public void onResponse(Call<User> call, Response<User> response) {
+                                //test is following or not
+
+                                Retrofit retrofit = new Retrofit.Builder().baseUrl(FriendsInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                                        .build();
+                                FriendsInterface friendsInterface = retrofit.create(FriendsInterface.class);
+                                Call<Void> addcallfriend = friendsInterface.deleteFriend(response.body().getId(),u.getId());
+                                addcallfriend.enqueue(new Callback<Void>() {
+                                    @Override
+                                    public void onResponse(Call<Void> call, Response<Void> response) {
+
+                                        friend.setVisibility(View.VISIBLE);
+                                        unfriend.setVisibility(View.INVISIBLE);
+                                        requestfriend.setVisibility(View.INVISIBLE);
+                                        add.setVisibility(View.VISIBLE);
+                                        unadd.setVisibility(View.INVISIBLE);
+
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Void> call, Throwable t) {
+
+                                    }
+                                });
+
+
+
+
+
+
+
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<User> call, Throwable t) {
+
+                            }
+                        });
+
+
+
+
+
+
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Toast.makeText(getContext(), "failure in getting user by id", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+
+
+            }
+        });
+
+
+        // logic request
+
+        requestfriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "friend request already sent", Toast.LENGTH_SHORT).show();
+            }
+        });
         return view;
     }
 

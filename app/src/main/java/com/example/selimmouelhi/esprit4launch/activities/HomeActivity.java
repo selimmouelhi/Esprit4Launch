@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,15 +19,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.selimmouelhi.esprit4launch.Interfaces.UserInterface;
 import com.example.selimmouelhi.esprit4launch.R;
+import com.example.selimmouelhi.esprit4launch.entities.User;
 import com.example.selimmouelhi.esprit4launch.fragments.FriendsFrag;
 import com.example.selimmouelhi.esprit4launch.fragments.HomeFragm;
 import com.example.selimmouelhi.esprit4launch.fragments.HomescreenFragment;
 import com.example.selimmouelhi.esprit4launch.fragments.MyFriends;
 import com.example.selimmouelhi.esprit4launch.fragments.ProfileFragment;
+import com.example.selimmouelhi.esprit4launch.fragments.SettingsFragment;
+import com.example.selimmouelhi.esprit4launch.fragments.followerfollowingfriendFrag;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -66,7 +76,9 @@ public class HomeActivity extends AppCompatActivity {
         emailprof = header.findViewById(R.id.emailprof);
         facebooklog = header.findViewById(R.id.facebook);
         googlelog = header.findViewById(R.id.google);
-        setupDrawerContent(navigationView);
+        String id = this.getSharedPreferences(MainActivity.PREFS_NAME, this.MODE_PRIVATE).getString(MainActivity.PREF_USER_ID, null);
+
+        setupDrawerContent(navigationView,id);
 
 
 
@@ -164,7 +176,7 @@ public class HomeActivity extends AppCompatActivity {
         return  super.onOptionsItemSelected(item);
     }
 
-    private void selectItemDrawer(MenuItem menuItem){
+    private void selectItemDrawer(MenuItem menuItem,String id){
 
         switch (menuItem.getItemId()){
             case R.id.Homeid:
@@ -173,8 +185,34 @@ public class HomeActivity extends AppCompatActivity {
                 drawerLayout.closeDrawers();
                 break;
             case R.id.settings:
-                Toast.makeText(this, "pressing on logout", Toast.LENGTH_SHORT).show();
-                drawerLayout.closeDrawers();
+                Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                UserInterface userInterface = retrofit.create(UserInterface.class);
+                Call<User> call = userInterface.getUserById(id);
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+
+
+                        System.out.println(response.body().getNom()+"in profile frag");
+                        SettingsFragment settingsFragment = new SettingsFragment();
+                        settingsFragment.setUser(response.body());
+                        FragmentManager manager = getSupportFragmentManager();
+
+                        manager.beginTransaction().replace(R.id.framelayout,settingsFragment).commit();
+                        drawerLayout.closeDrawers();
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        System.out.println("failureee");
+
+                    }
+                });
+
+
                 break;
             case R.id.notifications:
                 Toast.makeText(this, "pressing on logout", Toast.LENGTH_SHORT).show();
@@ -188,11 +226,11 @@ public class HomeActivity extends AppCompatActivity {
         }
 
     }
-    private void setupDrawerContent(NavigationView navigationView){
+    private void setupDrawerContent(NavigationView navigationView,String id){
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                selectItemDrawer(menuItem);
+                selectItemDrawer(menuItem,id);
                 return true;
             }
         });

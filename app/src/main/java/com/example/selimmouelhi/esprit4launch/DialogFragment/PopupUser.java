@@ -10,13 +10,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.selimmouelhi.esprit4launch.Interfaces.UserInterface;
 import com.example.selimmouelhi.esprit4launch.R;
 import com.example.selimmouelhi.esprit4launch.entities.User;
 import com.example.selimmouelhi.esprit4launch.fragments.FriendProfile;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PopupUser extends AppCompatDialogFragment {
 
@@ -28,6 +35,7 @@ public class PopupUser extends AppCompatDialogFragment {
     TextView friendsNumber ;
     TextView favoritesNumber ;
     TextView followersNumber ;
+
 
 
 
@@ -52,13 +60,41 @@ public class PopupUser extends AppCompatDialogFragment {
         nameProfile = view.findViewById(R.id.namePopUp);
         friendsNumber = view.findViewById(R.id.friendsnbr);
         followersNumber = view.findViewById(R.id.followersnbr);
+        favoritesNumber = view.findViewById(R.id.favoritesnbr);
+
 
         System.out.println(user.getNom()+"in dialog");
-        Picasso.with(getContext()).load(user.getImage()).into(profileImage);
-       followersNumber.setText(Integer.toString(user.getFollowers()));
-        friendsNumber.setText(Integer.toString(user.getFriends()));
 
-        nameProfile.setText(user.getPrenom() + " " + user.getNom());
+
+        //set data
+
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                .build();
+        UserInterface userInterface = retrofit.create(UserInterface.class);
+        Call<User> call = userInterface.getUserById(user.getId());
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+
+                Picasso.with(getContext()).load(response.body().getImage()).into(profileImage);
+                followersNumber.setText(Integer.toString(response.body().getFollowers()));
+                friendsNumber.setText(Integer.toString(response.body().getFriends()));
+
+                nameProfile.setText(response.body().getPrenom() + " " + response.body().getNom());
+
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(getContext(), "failure in getting user by id", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
 
         btnviewProfile.setOnClickListener(new View.OnClickListener() {
             @Override

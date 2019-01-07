@@ -259,16 +259,63 @@ public class followerfollowingfriendFrag extends Fragment implements followunfol
 
 
     @Override
-    public void onFollowingUser(User user) {
-        System.out.println(user.getFollowing()+"in call back interface");
-        numberfollowings.setText(Integer.toString(user.getFollowing()));
+    public void onFollowingUser(int  i,String id) {
+        int nbr = user.getFollowing()+i;
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                .build();
+        UserInterface userInterface = retrofit.create(UserInterface.class);
+        Call<User> call = userInterface.getUserById(id);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+
+                System.out.println(user.getFollowing()+"in call back interface");
+                numberfollowings.setText(Integer.toString(response.body().getFollowing()));
+                numberfollowers.setText(Integer.toString(response.body().getFollowers()));
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(getContext(), "failure in getting user by id", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+
 
     }
 
     @Override
-    public void onunFollowingUser(User user) {
-        System.out.println(user.getFollowing()+"in call back interface");
-        numberfollowings.setText(Integer.toString(user.getFollowing()));
+    public void onunFollowingUser(int i,String id) {
+        int nbr = user.getFollowing()+i;
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                .build();
+        UserInterface userInterface = retrofit.create(UserInterface.class);
+        Call<User> call = userInterface.getUserById(id);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+
+                System.out.println(user.getFollowing()+"in call back interface");
+                numberfollowings.setText(Integer.toString(response.body().getFollowing()));
+                numberfollowers.setText(Integer.toString(response.body().getFollowers()));
+
+                System.out.println(Integer.toString(response.body().getFollowers()) +"in call back");
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(getContext(), "failure in getting user by id", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
 }
