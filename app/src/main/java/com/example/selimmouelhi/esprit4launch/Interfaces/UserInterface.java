@@ -11,6 +11,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -30,6 +31,13 @@ public interface UserInterface {
 
     @GET("{id}")
     Call<User> getUserById(@Path("id") String id_user);
+
+
+    @DELETE("delete/{id}")
+    Call<Void> deleteUser(@Path("id") String id_user);
+
+    @GET("all/{key}/{id}")
+    Call<List<User>> searchUser(@Path("key") String prenom,@Path("id") String id);
 
 
     @POST("logout")

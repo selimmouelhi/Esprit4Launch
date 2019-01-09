@@ -68,44 +68,58 @@ public class followunfollowAdapter extends RecyclerView.Adapter<followunfollowAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
 
-
-                System.out.println(viewHolder.getAdapterPosition() + "in bind");
-                System.out.println(followers.get(viewHolder.getAdapterPosition()).getNom() + "in bind");
-                System.out.println(followers.get(viewHolder.getAdapterPosition()).getNom() + "inonbind");
-        System.out.println(followers.get(viewHolder.getAdapterPosition()).getImage()+"in adapterrr");
-
-                Picasso.with(mcontext).load(followers.get(viewHolder.getAdapterPosition()).getImage()).into(viewHolder.friendPicture);
-
-                viewHolder.nameView.setText(followers.get(viewHolder.getAdapterPosition()).getNom() + " " + followers.get(viewHolder.getAdapterPosition()).getPrenom());
-                System.out.println(followers.size());
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(FollowerInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
-                .build();
-        FollowerInterface followerInterface = retrofit.create(FollowerInterface.class);
-        String id = mcontext.getSharedPreferences(MainActivity.PREFS_NAME, mcontext.MODE_PRIVATE).getString(MainActivity.PREF_USER_ID, null);
+        String user_id = ((HomeActivity)mcontext).getSharedPreferences(MainActivity.PREFS_NAME, ((HomeActivity)mcontext).MODE_PRIVATE).getString(MainActivity.PREF_USER_ID, null);
 
 
-        Call<Boolean> call = followerInterface.isFollowing(id,followers.get(viewHolder.getAdapterPosition()).getId());
-        call.enqueue(new Callback<Boolean>() {
-            @Override
-            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                if (response.body() == true ){
-                    viewHolder.following.setVisibility(View.VISIBLE);
-                    viewHolder.follow.setVisibility(View.INVISIBLE);
+        if (user_id.equals(followers.get(viewHolder.getAdapterPosition()).getId())) {
+            viewHolder.following.setVisibility(View.INVISIBLE);
+            viewHolder.follow.setVisibility(View.INVISIBLE);
+            Picasso.with(mcontext).load(followers.get(viewHolder.getAdapterPosition()).getImage()).into(viewHolder.friendPicture);
+
+            viewHolder.nameView.setText(followers.get(viewHolder.getAdapterPosition()).getNom() + " " + followers.get(viewHolder.getAdapterPosition()).getPrenom());
+            System.out.println(followers.size());
+
+        }
+
+        else {
+            System.out.println(viewHolder.getAdapterPosition() + "in bind");
+            System.out.println(followers.get(viewHolder.getAdapterPosition()).getNom() + "in bind");
+            System.out.println(followers.get(viewHolder.getAdapterPosition()).getNom() + "inonbind");
+            System.out.println(followers.get(viewHolder.getAdapterPosition()).getImage() + "in adapterrr");
+
+            Picasso.with(mcontext).load(followers.get(viewHolder.getAdapterPosition()).getImage()).into(viewHolder.friendPicture);
+
+            viewHolder.nameView.setText(followers.get(viewHolder.getAdapterPosition()).getNom() + " " + followers.get(viewHolder.getAdapterPosition()).getPrenom());
+            System.out.println(followers.size());
+            Retrofit retrofit = new Retrofit.Builder().baseUrl(FollowerInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            FollowerInterface followerInterface = retrofit.create(FollowerInterface.class);
+            String id = mcontext.getSharedPreferences(MainActivity.PREFS_NAME, mcontext.MODE_PRIVATE).getString(MainActivity.PREF_USER_ID, null);
+
+
+            Call<Boolean> call = followerInterface.isFollowing(id, followers.get(viewHolder.getAdapterPosition()).getId());
+            call.enqueue(new Callback<Boolean>() {
+                @Override
+                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                    if (response.body() == true) {
+                        viewHolder.following.setVisibility(View.VISIBLE);
+                        viewHolder.follow.setVisibility(View.INVISIBLE);
+
+                    } else {
+
+                        viewHolder.following.setVisibility(View.INVISIBLE);
+                        viewHolder.follow.setVisibility(View.VISIBLE);
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Boolean> call, Throwable t) {
 
                 }
-                else{
+            });
+        }
 
-                    viewHolder.following.setVisibility(View.INVISIBLE);
-                    viewHolder.follow.setVisibility(View.VISIBLE);
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
-
-            }
-        });
 
         //follow button logic
         viewHolder.follow.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +138,8 @@ public class followunfollowAdapter extends RecyclerView.Adapter<followunfollowAd
                             }
                         })
                         .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                            String id = mcontext.getSharedPreferences(MainActivity.PREFS_NAME, mcontext.MODE_PRIVATE).getString(MainActivity.PREF_USER_ID, null);
+
 
                             Retrofit retrofit = new Retrofit.Builder().baseUrl(FollowerInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
                                     .build();
@@ -195,6 +211,8 @@ public class followunfollowAdapter extends RecyclerView.Adapter<followunfollowAd
                             }
                         })
                         .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                            String id = mcontext.getSharedPreferences(MainActivity.PREFS_NAME, mcontext.MODE_PRIVATE).getString(MainActivity.PREF_USER_ID, null);
+
 
                             Retrofit retrofit = new Retrofit.Builder().baseUrl(FollowerInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
                                     .build();

@@ -58,7 +58,6 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
     private TextView methodsignin;
     private TextView nameUser;
     private GoogleSignInClient mGoogleSignInClient;
-    private Button signout ;
     TextView emailProf;
     TextView phoneProfile;
     TextView numberofFriends;
@@ -85,17 +84,16 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
         View view =  inflater.inflate(R.layout.fragment_profile, container, false);
         Activity activity = getActivity();
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+       /*GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
-        googleApiClient = new GoogleApiClient.Builder(getContext()).enableAutoManage(getActivity(),this).addApi(Auth.GOOGLE_SIGN_IN_API,gso).build();
+        googleApiClient =((HomeActivity) activity).googleApiClient;
 
-        mGoogleSignInClient = GoogleSignIn.getClient(activity, gso);
+        mGoogleSignInClient = GoogleSignIn.getClient(activity, gso);*/
 
         userImage = view.findViewById(R.id.profile_picture);
         nameUser = view.findViewById(R.id.name_text);
         methodsignin = view.findViewById(R.id.method_text);
-        signout = view.findViewById(R.id.signoutProf);
         emailProf = view.findViewById(R.id.emailProfile);
         phoneProfile = view.findViewById(R.id.phone_profile);
         numberofFavorites = view.findViewById(R.id.numberFavorites);
@@ -105,6 +103,43 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
 
         String id = activity.getSharedPreferences(MainActivity.PREFS_NAME, activity.MODE_PRIVATE).getString(MainActivity.PREF_USER_ID, null);
         System.out.println(id+"in proffrag");
+
+        numberofFriends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                UserInterface userInterface = retrofit.create(UserInterface.class);
+                Call<User> call = userInterface.getUserById(id);
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+
+
+                        System.out.println(response.body().getNom()+"in profile frag");
+                        Friendsinside friendsinside = new Friendsinside();
+                        friendsinside.setUser(response.body());
+                        FragmentManager manager = getActivity().getSupportFragmentManager();
+
+
+                        manager.beginTransaction().addToBackStack(null).replace(R.id.framelayout,friendsinside).commit();
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Toast.makeText(getContext(), "failure in getting user by id", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+
+
+
+            }
+        });
 
         followers.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +161,8 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
                         followerfollowingfriendFrag.setUser(response.body());
                         FragmentManager manager = getActivity().getSupportFragmentManager();
 
-                        manager.beginTransaction().replace(R.id.framelayout,followerfollowingfriendFrag).commit();
+
+                        manager.beginTransaction().addToBackStack(null).replace(R.id.framelayout,followerfollowingfriendFrag).commit();
 
                     }
 
@@ -197,12 +233,6 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
 
 
 
-        signout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signout();
-            }
-        });
 
 
 
@@ -272,14 +302,8 @@ public class ProfileFragment extends Fragment implements GoogleApiClient.OnConne
 
     }
     private void goTohome(){
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        startActivity(intent);
+
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        googleApiClient.stopAutoManage(getActivity());
-        googleApiClient.disconnect();
-    }
+
 }

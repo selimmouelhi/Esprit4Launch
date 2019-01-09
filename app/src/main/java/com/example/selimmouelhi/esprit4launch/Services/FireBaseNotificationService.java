@@ -3,18 +3,23 @@ package com.example.selimmouelhi.esprit4launch.Services;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.example.selimmouelhi.esprit4launch.R;
 
 
 import com.example.selimmouelhi.esprit4launch.activities.HomeActivity;
+import com.example.selimmouelhi.esprit4launch.activities.MainActivity;
 import com.example.selimmouelhi.esprit4launch.entities.User;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -28,6 +33,7 @@ public class FireBaseNotificationService  extends FirebaseMessagingService {
 
     private static final String TAG = "firebaseTag";
     public static final String FOLLOWER_CHANNEL_ID = "follower_notif_id";
+    public static final String CHANNEL_ID = "broadcast";
     public static final String FOLLOWER_CHANNEL_NAME = "follower_notification";
     public static final String FRIEND_CHANNEL_ID = "friend_notif_id";
     public static final String FRIEND_CHANNEL_NAME = "friend_notification";
@@ -36,6 +42,10 @@ public class FireBaseNotificationService  extends FirebaseMessagingService {
     public static final int FOLLOWER_TYPE = 1;
     public static final int FRIEND_TYPE = 2;
     public static final int RESTAURANT_TYPE = 3;
+    public static final int FRIEND_ACCEPT_TYPE = 4;
+    public static final int FRIEND_BROADCAST = 5;
+    private BroadcastReceiver mReciever;
+
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -52,11 +62,16 @@ public class FireBaseNotificationService  extends FirebaseMessagingService {
                 UserService.getInstance().getUserById(data.get("notif_user_id"), new UserService.GetUserByIdCallBack() {
                     @Override
                     public void onCompletion(User user) {
+                        Bundle b=new Bundle();
+                        b.putString("id_follower",user.getId());
 
-                                        Intent intent = new Intent(FireBaseNotificationService.this, HomeActivity.class);
-                                       /* intent.putExtra(RecipeDetailsActivity.EXTRA_RECIPE_ID, data.get("notif_id"));
-                                        intent.putExtra(RecipeDetailsActivity.EXTRA_SHOULD_FINISH, false);*/
-
+                        Intent intent = new Intent(FireBaseNotificationService.this, HomeActivity.class);
+                        intent.putExtras(b);
+            //shared preferences
+                        getSharedPreferences(MainActivity.PREFS_NAME, Context.MODE_PRIVATE)
+                                .edit()
+                                .putString("idfollowernotif", user.getId())
+                                .apply();
                                         sendNotification(FOLLOWER_CHANNEL_ID,
                                                 FOLLOWER_CHANNEL_NAME,
                                                 data.get("title"),
@@ -77,6 +92,12 @@ public class FireBaseNotificationService  extends FirebaseMessagingService {
                         Intent intent = new Intent(FireBaseNotificationService.this, HomeActivity.class);
                                        /* intent.putExtra(RecipeDetailsActivity.EXTRA_RECIPE_ID, data.get("notif_id"));
                                         intent.putExtra(RecipeDetailsActivity.EXTRA_SHOULD_FINISH, false);*/
+
+                        //shared preferences
+                        getSharedPreferences(MainActivity.PREFS_NAME, Context.MODE_PRIVATE)
+                                .edit()
+                                .putString("idfriendnotif", user.getId())
+                                .apply();
 
                         sendNotification(FRIEND_CHANNEL_ID,
                                 FRIEND_CHANNEL_NAME,
@@ -111,6 +132,53 @@ public class FireBaseNotificationService  extends FirebaseMessagingService {
                 });
                 break;
 
+            case FRIEND_ACCEPT_TYPE:
+                UserService.getInstance().getUserById(data.get("notif_user_id"), new UserService.GetUserByIdCallBack() {
+                    @Override
+                    public void onCompletion(User user) {
+                        Bundle b=new Bundle();
+                        b.putString("id_follower",user.getId());
+
+                        Intent intent = new Intent(FireBaseNotificationService.this, HomeActivity.class);
+                        intent.putExtras(b);
+                        //shared preferences
+                        getSharedPreferences(MainActivity.PREFS_NAME, Context.MODE_PRIVATE)
+                                .edit()
+                                .putString("idfollowernotif", user.getId())
+                                .apply();
+                        sendNotification(FOLLOWER_CHANNEL_ID,
+                                FOLLOWER_CHANNEL_NAME,
+                                data.get("title"),
+                                data.get("body"),
+
+                                intent);
+
+
+                    }
+                });
+                break;
+
+            case FRIEND_BROADCAST:
+                UserService.getInstance().getUserById(data.get("notif_user_id"), new UserService.GetUserByIdCallBack() {
+                    @Override
+                    public void onCompletion(User user) {
+
+
+                        Intent intent = new Intent(FireBaseNotificationService.this, HomeActivity.class);
+
+                        sendNotification(FOLLOWER_CHANNEL_ID,
+                                FOLLOWER_CHANNEL_NAME,
+                                data.get("title"),
+                                data.get("body"),
+
+                                intent);
+
+
+                    }
+                });
+                break;
+
+
         }
 
     }
@@ -119,6 +187,50 @@ public class FireBaseNotificationService  extends FirebaseMessagingService {
     /*
     private void sendNotification(String messageBody){
 
+
+
+    }*/
+
+
+    private void sendNotification(String channelId, String channelName, String title, String messageBody, Intent actionIntent) {
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder builder = new NotificationCompat
+                .Builder(this, channelId)
+                .setContentTitle(title)
+                .setContentText(messageBody)
+                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setSound(defaultSoundUri)
+                .setVibrate(new long[]{0, 100, 200, 100});
+
+
+
+
+
+
+
+        if (actionIntent != null) {
+            System.out.println(actionIntent.getStringExtra("id_follower")+"if not null");
+            builder.setContentIntent(PendingIntent.getActivity(this, 0, actionIntent, 0));
+        }
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            Log.d(TAG, "sendNotification: onMessageReceived >26");
+            NotificationChannel notificationChannel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
+            notificationManager.createNotificationChannel(notificationChannel);
+        } else {
+            Log.d(TAG, "sendNotification: onMessageReceived <26");
+            builder.setPriority(NotificationManager.IMPORTANCE_HIGH);
+        }
+
+        notificationManager.notify((int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE), builder.build());
+    }
+
+    public void handleIntent(Intent intent) {
+        Log.d(TAG, "handleIntent: ");
+    }
+
+    public void sendbroadcastnotification(String messageBody){
         Intent intent = new Intent(this,HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
@@ -155,38 +267,7 @@ public class FireBaseNotificationService  extends FirebaseMessagingService {
                 .setContentIntent(pendingIntent);
         notificationManager.notify(0,builder.build());
 
-    }*/
-
-
-    private void sendNotification(String channelId, String channelName, String title, String messageBody, Intent actionIntent) {
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder builder = new NotificationCompat
-                .Builder(this, channelId)
-                .setContentTitle(title)
-                .setContentText(messageBody)
-                .setSmallIcon(R.mipmap.ic_launcher_round)
-                .setSound(defaultSoundUri)
-                .setVibrate(new long[]{0, 100, 200, 100});
-
-
-        if (actionIntent != null) {
-            builder.setContentIntent(PendingIntent.getActivity(this, 0, actionIntent, 0));
-        }
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            Log.d(TAG, "sendNotification: onMessageReceived >26");
-            NotificationChannel notificationChannel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
-            notificationManager.createNotificationChannel(notificationChannel);
-        } else {
-            Log.d(TAG, "sendNotification: onMessageReceived <26");
-            builder.setPriority(NotificationManager.IMPORTANCE_HIGH);
-        }
-
-        notificationManager.notify((int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE), builder.build());
-    }
-
-    public void handleIntent(Intent intent) {
-        Log.d(TAG, "handleIntent: ");
     }
 }
+
+

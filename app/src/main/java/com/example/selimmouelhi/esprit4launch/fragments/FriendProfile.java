@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,6 +87,97 @@ public class FriendProfile extends Fragment {
 
         //set data
 
+        //go from number following to following frag
+
+        friendsnbr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                UserInterface userInterface = retrofit.create(UserInterface.class);
+                Call<User> call = userInterface.getUserById(user.getId());
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+
+
+                        System.out.println(response.body().getNom()+"in profile frag");
+                        Friendsinside friendsinside = new Friendsinside();
+                        friendsinside.setUser(response.body());
+                        FragmentManager manager = getActivity().getSupportFragmentManager();
+
+
+                        manager.beginTransaction().addToBackStack(null).replace(R.id.framelayout,friendsinside).commit();
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Toast.makeText(getContext(), "failure in getting user by id", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+            }
+        });
+
+        followingsnbr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                UserInterface userInterface = retrofit.create(UserInterface.class);
+                Call<User> call = userInterface.getUserById(user.getId());
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        System.out.println(response.body().getNom()+"in profile frag");
+                        followerfollowingfriendFrag followerfollowingfriendFrag = new followerfollowingfriendFrag();
+                        followerfollowingfriendFrag.setUser(response.body());
+                        FragmentManager manager = getActivity().getSupportFragmentManager();
+
+                        manager.beginTransaction().replace(R.id.framelayout,followerfollowingfriendFrag).commit();
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+
+                    }
+                });
+
+            }
+        });
+
+
+        //go from number following to following frag
+
+        followersnbr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                UserInterface userInterface = retrofit.create(UserInterface.class);
+                Call<User> call = userInterface.getUserById(user.getId());
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        System.out.println(response.body().getNom()+"in profile frag");
+                        followerfollowingfriendFrag followerfollowingfriendFrag = new followerfollowingfriendFrag();
+                        followerfollowingfriendFrag.setUser(response.body());
+                        FragmentManager manager = getActivity().getSupportFragmentManager();
+
+                        manager.beginTransaction().replace(R.id.framelayout,followerfollowingfriendFrag).commit();
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+
+                    }
+                });
+
+            }
+        });
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(UserInterface.Base_Url).addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -180,8 +272,8 @@ public class FriendProfile extends Fragment {
                                     else{
                                         friend.setVisibility(View.VISIBLE);
                                         unfriend.setVisibility(View.INVISIBLE);
-                                        unadd.setVisibility(View.VISIBLE);
-                                        add.setVisibility(View.INVISIBLE);
+                                        unadd.setVisibility(View.INVISIBLE);
+                                        add.setVisibility(View.VISIBLE);
                                         requestfriend.setVisibility(View.INVISIBLE);
 
 

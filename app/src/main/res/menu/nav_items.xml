@@ -15,10 +15,6 @@
         android:icon="@drawable/baseline_restaurant_black_24dp"
         android:title="Restaurant" />
     <item
-        android:id="@+id/Cafe"
-        android:icon="@drawable/baseline_local_cafe_black_24dp"
-        android:title="Cafe" />
-    <item
         android:id="@+id/friends"
         android:icon="@drawable/outline_person_black_24dp"
         android:title="Friends" />

@@ -61,7 +61,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
         System.out.println(friends.get(viewHolder.getAdapterPosition()).getNom()+"inonbind");
 
         Picasso.with(mcontext).load(friends.get(viewHolder.getAdapterPosition()).getImage()).into(viewHolder.friendPicture);
-        viewHolder.nameView.setText(friends.get(viewHolder.getAdapterPosition()).getNom()+" "+friends.get(viewHolder.getAdapterPosition()).getPrenom());
+        viewHolder.nameView.setText(friends.get(viewHolder.getAdapterPosition()).getNom()+" "+friends.get(viewHolder.getAdapterPosition()).getPrenom()+" "+friends.get(viewHolder.getAdapterPosition()).getStatus());
         System.out.println(friends.size());
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

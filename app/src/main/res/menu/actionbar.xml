@@ -10,12 +10,16 @@
     android:title="favorite"
     android:id="@+id/favoritee"
     android:icon="@drawable/bookmark"
-    app:showAsAction="always"/>
+    app:showAsAction="collapseActionView|ifRoom"
+
+
+    />
     <item
-        android:title="favorite"
+        android:title="search"
         android:id="@+id/searchh"
         android:icon="@drawable/searchh"
+        app:showAsAction="collapseActionView|ifRoom"
 
-        app:showAsAction="always"/>
+        app:actionViewClass="android.support.v7.widget.SearchView" />
 
 </menu>

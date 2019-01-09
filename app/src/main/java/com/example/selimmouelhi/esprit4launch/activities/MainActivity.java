@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.selimmouelhi.esprit4launch.R;
 import com.example.selimmouelhi.esprit4launch.Services.UserService;
+import com.example.selimmouelhi.esprit4launch.Utils.Constant;
 import com.example.selimmouelhi.esprit4launch.entities.User;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -129,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 private void signInFacebook(){
 
     callbackManager = CallbackManager.Factory.create();
-    loginButton.setReadPermissions(Arrays.asList("public_profile","email","user_birthday"));
+    loginButton.setReadPermissions(Arrays.asList("public_profile","email"));
     loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
         @Override
         public void onSuccess(final LoginResult loginResult) {
@@ -243,10 +244,9 @@ private void signInFacebook(){
             user.setMail(account.getEmail());
             user.setNom(account.getFamilyName());
             user.setPrenom(account.getGivenName());
-            user.setImage(account.getPhotoUrl().toString());
+            user.setImage(account.getPhotoUrl() == null ? Constant.DEFAULT_PROFILE_PICTURE_URL : account.getPhotoUrl().toString());
             System.out.println("g_" + account.getId());
-            System.out.println(account.getEmail());
-            System.out.println(account.getPhotoUrl().toString());
+
             loginOrCreateFromSocialMedia(user, METHOD_GOOGLE);
             //Glide.with(this).load(img_url).into(image id); how to download image url
 
@@ -393,5 +393,6 @@ private void signInFacebook(){
             }
         });
     }
+
 }
 

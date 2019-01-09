@@ -29,8 +29,7 @@ public class HomescreenFragment extends Fragment {
         topratedRes topratedRes = new topratedRes();
         getFragmentManager().beginTransaction().replace(R.id.home_toprated_restaurants, topratedRes).commit();
 
-        topratedCaf topratedCaf = new topratedCaf();
-        getFragmentManager().beginTransaction().replace(R.id.caftoprated, topratedCaf).commit();
+
 
         tastyRes tastyRes = new tastyRes();
         getFragmentManager().beginTransaction().replace(R.id.tastyres, tastyRes).commit();
@@ -38,8 +37,7 @@ public class HomescreenFragment extends Fragment {
         servicefrag servicefrag = new servicefrag();
         getFragmentManager().beginTransaction().replace(R.id.serviceres, servicefrag).commit();
 
-        serviceCaf serviceCaf = new serviceCaf();
-        getFragmentManager().beginTransaction().replace(R.id.Catfservice, serviceCaf).commit();
+
 
         return  view ;
     }

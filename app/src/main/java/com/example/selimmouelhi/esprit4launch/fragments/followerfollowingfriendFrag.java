@@ -39,7 +39,6 @@ public class followerfollowingfriendFrag extends Fragment implements followunfol
     TextView nameProf;
     TextView numberfollowers;
     TextView numberfollowings;
-    TextView nofollowersorfollowings;
     LinearLayout linearLayoutfollower;
     LinearLayout linearLayoutfollowing;
     LinearLayout linearLayoutfollowernbr;
@@ -65,7 +64,6 @@ public class followerfollowingfriendFrag extends Fragment implements followunfol
         nameProf = view.findViewById(R.id.nameProf);
         numberfollowers = view.findViewById(R.id.numberfollowers);
         numberfollowings = view.findViewById(R.id.numberfollowings);
-        nofollowersorfollowings = view.findViewById(R.id.nofollow);
         linearLayoutfollower = view.findViewById(R.id.linearfollowers);
         linearLayoutfollowing = view.findViewById(R.id.linearfollowings);
         linearLayoutfollowernbr = view.findViewById(R.id.linearfollowersnumber);
@@ -75,7 +73,6 @@ public class followerfollowingfriendFrag extends Fragment implements followunfol
         nameProf.setText(this.user.getPrenom() + " " + this.user.getNom());
         numberfollowers.setText(Integer.toString(user.getFollowers()));
         numberfollowings.setText(Integer.toString(user.getFollowing()));
-        nofollowersorfollowings.setVisibility(View.INVISIBLE);
         linearLayoutfollowing.setVisibility(View.INVISIBLE);
         linearLayoutfollower.setVisibility(View.INVISIBLE);
         followunfollowAdapter followunfollowAdapter = new followunfollowAdapter(getActivity(),followings,this);
@@ -97,14 +94,12 @@ public class followerfollowingfriendFrag extends Fragment implements followunfol
 
                         followers = (ArrayList<User>) response.body();
                         if (followers.size() == 0) {
-                            nofollowersorfollowings.setVisibility(View.VISIBLE);
                             recyclerView.setVisibility(View.INVISIBLE);
                             linearLayoutfollowing.setVisibility(View.INVISIBLE);
                             linearLayoutfollower.setVisibility(View.VISIBLE);
 
 
                         } else {
-                            nofollowersorfollowings.setVisibility(View.INVISIBLE);
                             recyclerView.setVisibility(View.VISIBLE);
                             linearLayoutfollowing.setVisibility(View.INVISIBLE);
                             linearLayoutfollower.setVisibility(View.VISIBLE);
@@ -175,13 +170,11 @@ public class followerfollowingfriendFrag extends Fragment implements followunfol
                     public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                         followings = (ArrayList<User>) response.body();
                         if (followings.size() == 0) {
-                            nofollowersorfollowings.setVisibility(View.VISIBLE);
                             recyclerView.setVisibility(View.INVISIBLE);
                             linearLayoutfollowing.setVisibility(View.VISIBLE);
                             linearLayoutfollower.setVisibility(View.INVISIBLE);
 
                         } else {
-                            nofollowersorfollowings.setVisibility(View.INVISIBLE);
                             recyclerView.setVisibility(View.VISIBLE);
                             linearLayoutfollowing.setVisibility(View.VISIBLE);
                             linearLayoutfollower.setVisibility(View.INVISIBLE);
@@ -317,6 +310,9 @@ public class followerfollowingfriendFrag extends Fragment implements followunfol
             }
         });
 
+
     }
+
+    
 }
 

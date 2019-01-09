@@ -35,6 +35,10 @@ public interface FriendsInterface {
     Call<Void> addFriendNotif(@Path("id_user")String id_user,@Path("id_friend")String id_friend);
 
 
+    @POST("notifyfriends/{id}")
+    Call<Void> NotifyFriends(@Path("id_user")String id_user);
+
+
     @GET("is_friend/{id1}/{id2}")
     Call<Boolean> is_friend(@Path("id1") String followerId, @Path("id2") String followedId);
 
